@@ -1,17 +1,16 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Popup from "./components/Board/Popup/Popup";
 import Nav from "./components/Nav/Nav";
-import Lists from "./components/Board/Lists/Lists";
+import Board from "./components/Board/Board";
 
 
-function App() {
+function App(props) {
+    debugger
   return (
     <div className="App">
-        <Nav />
-        <Lists/>
-        <Popup/>
+        <Nav/>
+        <Board BoardPage={props.state.BoardPage} dispatch={props.dispatch}/>
     </div>
 
   );

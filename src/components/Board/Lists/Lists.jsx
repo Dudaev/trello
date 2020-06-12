@@ -17,8 +17,10 @@ class Lists extends Component {
         this.setState({ buttonVisible: s.show })
         this.setState({ InputVisible: s.hide })
     }
+
     render() {
         const { buttonVisible, InputVisible } = this.state
+        console.log(this.props)
         return (
             <div>
                 <div className={s.container} >

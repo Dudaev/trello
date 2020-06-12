@@ -1,6 +1,9 @@
 const ADD_LIST = 'ADD_LIST';
 const UPDATE_NEW_LIST = 'UPDATE_NEW_LIST';
 
+const ADD_CARD = 'ADD_CARD';
+const UPDATE_NEW_CARD = 'UPDATE_NEW_CARD';
+
 let store = {
     _state: {
         BoardPage:{
@@ -23,8 +26,14 @@ let store = {
                 {id:0, name: 'Nikita'}
             ],
             newListName: '',
-            newCard: '',
+
+
+            newCardName: '',
+
+
             newComment: '',
+
+
             newAuthor: ''
         }
 
@@ -52,9 +61,33 @@ let store = {
             this._state.BoardPage.newListName = '';
             this._callSubscriber(this._state);
         } else if (action.type === UPDATE_NEW_LIST) {
-            this._state.BoardPage.newListName = action.newList;
+            this._state.BoardPage.newListName = action.newListName;
             this._callSubscriber(this._state)
+        } else if (action.type === ADD_CARD) {
+            let newCard = {
+                id: 0,
+                authorID:0,
+                listsID:0,
+                name: this._state.BoardPage.newCardName,
+                description: "Тестовая карточка",
+                numberOfComments:0
+            };
+            this._state.BoardPage.cards.push(newCard);
+            this._state.BoardPage.newCardName = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_NEW_CARD) {
+            this._state.BoardPage.newCardName = action.newCardName;
+            this._callSubscriber(this._state)
+        }
     }
 }
+
+export const addListActionCreator = () => ({type: ADD_LIST})
+export const updateNewListNameActionCreator = (text) =>
+        ({type: UPDATE_NEW_LIST, newListName: text })
+
+export const addCardActionCreator = () => ({type: ADD_CARD})
+export const updateNewCardNameActionCreator = (text) =>
+    ({type: UPDATE_NEW_CARD, newCardName: text })
 
 export default store;
