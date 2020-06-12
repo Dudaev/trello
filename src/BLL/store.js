@@ -8,10 +8,20 @@ let store = {
     _state: {
         BoardPage:{
             lists: [
-                {id: 0, name: 'TODO', numberOfCards:1},
-                {id: 1, name: 'In Progress', numberOfCards:3},
-                {id: 2, name: 'Testing', numberOfCards:0},
-                {id: 3, name: 'Done', numberOfCards:0},
+                {id: 0, name: 'TODO', numberOfCards:1, cards: [
+                        {id: 0, authorID:0, listsID:0, name: 'Первая TODO карточка', description: "Тестовая карточка", numberOfComments:0},
+                        {id: 1, authorID:0, listsID:0, name: 'Вторая TODO карточка', description: "Вторая тестовая карточка", numberOfComments:3},
+                    ] },
+                {id: 1, name: 'In Progress', numberOfCards:3, cards: [
+                        {id: 2, authorID:0, listsID:1, name: 'Первая In Progress карточка', description: "Тестовая карточка", numberOfComments:0},
+                        {id: 3, authorID:0, listsID:1, name: 'Вторая In Progress карточка', description: "Тестовая карточка", numberOfComments:0},
+                    ] },
+                {id: 2, name: 'Testing', numberOfCards:0, cards: [
+                        {id: 4, authorID:0, listsID:2, name: 'Первая Testing карточка', description: "Тестовая карточка", numberOfComments:0},
+                    ] },
+                {id: 3, name: 'Done', numberOfCards:0, cards: [
+                        {id: 5, authorID:0, listsID:3, name: 'Первая Done карточка', description: "Тестовая карточка", numberOfComments:2},
+                    ] },
             ],
             cards: [
                 {id: 0, authorID:0, listsID:0, name: 'Первая TODO карточка', description: "Тестовая карточка", numberOfComments:0},
