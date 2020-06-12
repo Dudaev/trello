@@ -1,0 +1,15 @@
+.hide {
+    display: none;
+}
+.show {
+    display: block;
+}
+
+.container{
+    display: flex;
+    margin: 10px;
+}
+
+.container > div{
+    padding-right: 20px;
+}
