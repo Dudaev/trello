@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Popup from "./components/Popup/Popup";
+import Popup from "./components/Board/Popup/Popup";
 import Nav from "./components/Nav/Nav";
-import Lists from "./components/Lists/Lists";
+import Lists from "./components/Board/Lists/Lists";
 
 
 function App() {
