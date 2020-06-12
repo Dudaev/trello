@@ -14,13 +14,19 @@ let store = {
                 {id: 3, name: 'Done', numberOfCards:0},
             ],
             cards: [
-                {id: 0, authorID:0, listsID:0, name: 'Первая карточка', description: "Тестовая карточка", numberOfComments:0},
-                {id: 1, authorID:0, listsID:0, name: 'Вторая карточка', description: "Вторая тестовая карточка", numberOfComments:3},
+                {id: 0, authorID:0, listsID:0, name: 'Первая TODO карточка', description: "Тестовая карточка", numberOfComments:0},
+                {id: 1, authorID:0, listsID:0, name: 'Вторая TODO карточка', description: "Вторая тестовая карточка", numberOfComments:3},
+                {id: 2, authorID:0, listsID:1, name: 'Первая In Progress карточка', description: "Тестовая карточка", numberOfComments:0},
+                {id: 3, authorID:0, listsID:1, name: 'Вторая In Progress карточка', description: "Тестовая карточка", numberOfComments:0},
+                {id: 4, authorID:0, listsID:2, name: 'Первая Testing карточка', description: "Тестовая карточка", numberOfComments:0},
+                {id: 5, authorID:0, listsID:3, name: 'Первая Done карточка', description: "Тестовая карточка", numberOfComments:2},
             ],
             comments: [
-                {id: 0, authorID:0, cardsID:1, body: "Первый комментарий" },
-                {id: 1, authorID:0, cardsID:1, body: "Второй комментарий" },
-                {id: 2, authorID:0, cardsID:1, body: "Третий комментарий" }
+                {id: 0, authorID:0, cardsID:1, body: "Первый TODO комментарий" },
+                {id: 1, authorID:0, cardsID:1, body: "Второй TODO комментарий" },
+                {id: 2, authorID:0, cardsID:1, body: "Третий TODO комментарий" },
+                {id: 3, authorID:0, cardsID:5, body: "Первый Done комментарий" },
+                {id: 4, authorID:0, cardsID:5, body: "Первый Done комментарий" },
             ],
             author: [
                 {id:0, name: 'Nikita'}

@@ -6,7 +6,6 @@ import Board from "./components/Board/Board";
 
 
 function App(props) {
-    debugger
   return (
     <div className="App">
         <Nav/>

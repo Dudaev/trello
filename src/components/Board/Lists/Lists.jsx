@@ -5,40 +5,88 @@ import s from './Lists.module.css';
 class Lists extends Component {
     state = {
         buttonVisible: s.show,
-        InputVisible: s.hide
+        InputVisible: s.hide,
+        visible: false,
     }
+
     hideButtonSwohInput = (e) => {
         e.preventDefault()
-        this.setState({ buttonVisible: s.hide })
-        this.setState({ InputVisible: s.show })
+        this.setState({ visible: true })
     }
     swohButtonHideInput = (e) => {
         e.preventDefault()
-        this.setState({ buttonVisible: s.show })
-        this.setState({ InputVisible: s.hide })
+        this.setState({ visible: false })
     }
 
     render() {
-        const { buttonVisible, InputVisible } = this.state
-        console.log(this.props)
+        const { visible } = this.state
+        const { lists, cards, comments, author } = this.props.BoardPage
+
+        console.log(lists[0].name)
+
+        let cardsElements0 =
+            cards.map(function(cards) {
+                if(cards.listsID === 0)
+                return <ListGroup.Item><div>{cards.name}</div><div className={s.comment}>Com {cards.numberOfComments}</div></ListGroup.Item>;
+            });
+        let cardsElements1 =
+            cards.map(function(cards) {
+                if(cards.listsID === 1)
+                    return <ListGroup.Item><div>{cards.name}</div><div className={s.comment}>Com {cards.numberOfComments}</div></ListGroup.Item>;
+            });
+        let cardsElements2 =
+            cards.map(function(cards) {
+                if(cards.listsID === 2)
+                    return <ListGroup.Item><div>{cards.name}</div><div className={s.comment}>Com {cards.numberOfComments}</div></ListGroup.Item>;
+            });
+        let cardsElements3 =
+            cards.map(function(cards) {
+                if(cards.listsID === 3)
+                    return <ListGroup.Item><div>{cards.name}</div><div className={s.comment}>Com {cards.numberOfComments}</div></ListGroup.Item>;
+            });
+
         return (
             <div>
                 <div className={s.container} >
                     <div>
+                    <Card style={{width: '18rem'}}>
+                        <Card.Header >{lists[0].name}</Card.Header>
+                        <Form.Group className="mb-0" controlId="formGridState">
+                            {cardsElements0}
+                            {
+                                !visible && <Button onClick={ this.hideButtonSwohInput } variant="outline-secondary" size="md" block>
+                                    Add card
+                                </Button>
+                            }
+                        </Form.Group >
+                        {
+                            visible && <InputGroup>
+                                <FormControl
+                                    placeholder="Enter a title for this card"
+                                    aria-label="Enter a title for this card"
+                                />
+                                <InputGroup.Append>
+                                    <Button onClick={ this.swohButtonHideInput } variant="outline-secondary">Add card</Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+
+                        }
+
+                    </Card>
+                </div>
+                    <div>
                         <Card style={{width: '18rem'}}>
-                            <Card.Header >TODO</Card.Header>
+                            <Card.Header >{lists[1].name}</Card.Header>
                             <Form.Group className="mb-0" controlId="formGridState">
-                                <ListGroup.Item>Card 1</ListGroup.Item>
-                                <ListGroup.Item>Card 2</ListGroup.Item>
-                                <ListGroup.Item>Card 3</ListGroup.Item>
-                                <div>
-                                    <Button className={buttonVisible} onClick={ this.hideButtonSwohInput } variant="outline-secondary" size="md" block>
+                                {cardsElements1}
+                                {
+                                    !visible && <Button onClick={ this.hideButtonSwohInput } variant="outline-secondary" size="md" block>
                                         Add card
                                     </Button>
-                                </div>
+                                }
                             </Form.Group >
-                            <div className={InputVisible}>
-                                <InputGroup>
+                            {
+                                visible && <InputGroup>
                                     <FormControl
                                         placeholder="Enter a title for this card"
                                         aria-label="Enter a title for this card"
@@ -47,7 +95,61 @@ class Lists extends Component {
                                         <Button onClick={ this.swohButtonHideInput } variant="outline-secondary">Add card</Button>
                                     </InputGroup.Append>
                                 </InputGroup>
-                            </div>
+
+                            }
+
+                        </Card>
+                    </div>
+                    <div>
+                        <Card style={{width: '18rem'}}>
+                            <Card.Header >{lists[2].name}</Card.Header>
+                            <Form.Group className="mb-0" controlId="formGridState">
+                                {cardsElements2}
+                                {
+                                    !visible && <Button onClick={ this.hideButtonSwohInput } variant="outline-secondary" size="md" block>
+                                        Add card
+                                    </Button>
+                                }
+                            </Form.Group >
+                            {
+                                visible && <InputGroup>
+                                    <FormControl
+                                        placeholder="Enter a title for this card"
+                                        aria-label="Enter a title for this card"
+                                    />
+                                    <InputGroup.Append>
+                                        <Button onClick={ this.swohButtonHideInput } variant="outline-secondary">Add card</Button>
+                                    </InputGroup.Append>
+                                </InputGroup>
+
+                            }
+
+                        </Card>
+                    </div>
+                    <div>
+                        <Card style={{width: '18rem'}}>
+                            <Card.Header >{lists[3].name}</Card.Header>
+                            <Form.Group className="mb-0" controlId="formGridState">
+                                {cardsElements3}
+                                {
+                                    !visible && <Button onClick={ this.hideButtonSwohInput } variant="outline-secondary" size="md" block>
+                                        Add card
+                                    </Button>
+                                }
+                            </Form.Group >
+                            {
+                                visible && <InputGroup>
+                                    <FormControl
+                                        placeholder="Enter a title for this card"
+                                        aria-label="Enter a title for this card"
+                                    />
+                                    <InputGroup.Append>
+                                        <Button onClick={ this.swohButtonHideInput } variant="outline-secondary">Add card</Button>
+                                    </InputGroup.Append>
+                                </InputGroup>
+
+                            }
+
                         </Card>
                     </div>
                 </div>
