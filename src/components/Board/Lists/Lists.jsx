@@ -9,19 +9,25 @@ class Lists extends Component {
     state = {
     }
 
-    hideButtonSwohInput = (e,b) => {
+    hideButtonShowInput = (e,b) => {
         e.preventDefault()
         let visible = true
         let action = updateNewListVisibleActionCreator(visible,b)
         this.props.dispatch(action)
     }
-    swohButtonHideInput = (e,b) => {
+    showButtonHideInput = (e,b) => {
         e.preventDefault()
         let visible = false
         let action = updateNewListVisibleActionCreator(visible,b)
         this.props.dispatch(action)
     }
 
+    showInputList = (e,b) => {
+        e.preventDefault()
+        let visible = false
+        let action = updateNewListVisibleActionCreator(visible,b)
+        this.props.dispatch(action)
+    }
 
 
     render() {
@@ -34,11 +40,18 @@ class Lists extends Component {
                         });
                     return <div>
                         <Card style={{width: '18rem'}}>
-                            <Card.Header >{l.name}</Card.Header>
+                                <Card.Header onClick={ (e) => this.showInputList(e, l.name) }>
+                                    {
+                                        !l.visibleInputList && l.name
+                                    }
+                                    {
+                                        l.visibleInputList && <FormControl></FormControl>
+                                    }
+                                </Card.Header>
                             <Form.Group className="mb-0" controlId="formGridState">
                                 {cardsElements}
                                 {
-                                    !l.visible && <Button  onClick={ (e) => this.hideButtonSwohInput(e, l.name) } variant="outline-secondary" size="md" block>
+                                    !l.visible && <Button  onClick={ (e) => this.hideButtonShowInput(e, l.name) } variant="outline-secondary" size="md" block>
                                         Add card
                                     </Button>
                                 }
@@ -50,7 +63,7 @@ class Lists extends Component {
                                         aria-label="Enter a title for this card"
                                     />
                                     <InputGroup.Append>
-                                        <Button onClick={ (e) => this.swohButtonHideInput(e, l.name)} variant="outline-secondary">Add card</Button>
+                                        <Button onClick={ (e) => this.showButtonHideInput(e, l.name)} variant="outline-secondary">Add card</Button>
                                     </InputGroup.Append>
                                 </InputGroup>
                             }
