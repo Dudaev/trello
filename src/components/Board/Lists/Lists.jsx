@@ -1,57 +1,84 @@
-import React, {Component} from 'react';
+import React, {Component, useRef} from 'react';
 import {Button, Card, Form, FormControl, InputGroup, ListGroup} from "react-bootstrap";
 import s from './Lists.module.css';
+import {
+    addListVisibleActionCreator,
+    updateNewCardNameActionCreator,
+    updateNewListNameActionCreator,
+    updateNewListVisibleActionCreator
+} from "../../../BLL/store";
 
 class Lists extends Component {
-
-
     state = {
-        visible0: false,
+        // visibleTODO: false,
+        // visibleInProgress: false,
+        // visibleTesting: false,
+        // visibleDone: false,
     }
 
-    hideButtonSwohInput0 = (e) => {
+    hideButtonSwohInput = (e,b) => {
         e.preventDefault()
-        this.setState({ visible: true })
+        let visible = true
+        console.log('hideButtonSwohInput ' + b + visible)
+        let action = updateNewListVisibleActionCreator(visible,b)
+        this.props.dispatch(action)
     }
-    swohButtonHideInput0 = (e) => {
+    swohButtonHideInput = (e,b) => {
         e.preventDefault()
-        this.setState({ visible: false })
+        let visible = false
+        console.log('swohButtonHideInput ' + b + visible)
+        let action = updateNewListVisibleActionCreator(visible,b)
+        this.props.dispatch(action)
     }
+
+
 
     render() {
-        const { visible } = this.state
         const { lists, cards, comments, author } = this.props.BoardPage
+        // const { visibleTODO, visibleInProgress, visibleTesting, visibleDone} = this.state
+
+        // let addPost = () => {
+        //     //props.addPost();
+        //     this.props.dispatch(addPostActionCreator());
+        // }
+
+        // let onPostChange = () => {
+        //     this.props.dispatch(visibleTODO);
+        // }
+
         let listsElements =
-            lists.map(function(lists) {
+            lists.map((l) => {
                     let cardsElements =
-                        lists.cards.map(function(cards) {
-                            return <ListGroup.Item><div>{cards.name}</div><div className={s.comment}>Com {cards.comments.length} </div></ListGroup.Item>;
+                        l.cards.map(function(c) {
+                            return <ListGroup.Item><div>{c.name}</div><div className={s.comment}>Com {c.comments.length} </div></ListGroup.Item>;
                         });
                     return <div>
                         <Card style={{width: '18rem'}}>
-                            <Card.Header >{lists.name}</Card.Header>
+                            <Card.Header >{l.name}</Card.Header>
                             <Form.Group className="mb-0" controlId="formGridState">
                                 {cardsElements}
                                 {
-                                    !visible && <Button /*onClick={ this.hideButtonSwohInput }*/ variant="outline-secondary" size="md" block>
+                                    !l.visible && <Button  onClick={ (e) => this.hideButtonSwohInput(e, l.name) } variant="outline-secondary" size="md" block>
                                         Add card
                                     </Button>
                                 }
                             </Form.Group >
                             {
-                                visible && <InputGroup>
+                                l.visible && <InputGroup>
                                     <FormControl
                                         placeholder="Enter a title for this card"
                                         aria-label="Enter a title for this card"
                                     />
                                     <InputGroup.Append>
-                                        <Button /*onClick={ this.swohButtonHideInput }*/ variant="outline-secondary">Add card</Button>
+                                        <Button onClick={ (e) => this.swohButtonHideInput(e, l.name)} variant="outline-secondary">Add card</Button>
                                     </InputGroup.Append>
                                 </InputGroup>
                             }
                         </Card>
                     </div>;
+
             });
+
         return (
             <div>
                 <div className={s.container} >
