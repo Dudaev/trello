@@ -6,11 +6,13 @@ const UPDATE_NEW_CARD = 'UPDATE_NEW_CARD';
 
 const UPDATE_NEW_VISIBLE_STATUS = 'UPDATE_NEW_VISIBLE_STATUS';
 
+const UPDATE_LIST_TITLE_VISIBLE_STATUS = 'UPDATE_LIST_TITLE_VISIBLE_STATUS'
+
 let store = {
     _state: {
         BoardPage:{
             lists: [
-                {id: 0, name: 'TODO', numberOfCards:1, visible: false, cards: [
+                {id: 0, name: 'TODO', numberOfCards:1, visible: false, visibleInputList: false, cards: [
                         {id: 0, authorID:0, listsID:0, name: 'Первая TODO карточка', description: "Тестовая карточка", numberOfComments:0, comments: []},
                         {id: 1, authorID:0, listsID:0, name: 'Вторая TODO карточка', description: "Вторая тестовая карточка", numberOfComments:3, comments: [
                                 {id: 0, authorID:0, cardsID:1, body: "Первый TODO комментарий" },
@@ -18,14 +20,14 @@ let store = {
                                 {id: 2, authorID:0, cardsID:1, body: "Третий TODO комментарий" },
                             ]},
                     ] },
-                {id: 1, name: 'In Progress', numberOfCards:3, visible: false, cards: [
+                {id: 1, name: 'In Progress', numberOfCards:3, visible: false, visibleInputList: false, cards: [
                         {id: 2, authorID:0, listsID:1, name: 'Первая In Progress карточка', description: "Тестовая карточка", numberOfComments:0, comments: []},
                         {id: 3, authorID:0, listsID:1, name: 'Вторая In Progress карточка', description: "Тестовая карточка", numberOfComments:0, comments: []},
                     ] },
-                {id: 2, name: 'Testing', numberOfCards:0, visible: false, cards: [
+                {id: 2, name: 'Testing', numberOfCards:0, visible: false, visibleInputList: false, cards: [
                         {id: 4, authorID:0, listsID:2, name: 'Первая Testing карточка', description: "Тестовая карточка", numberOfComments:0, comments: []},
                     ] },
-                {id: 3, name: 'Done', numberOfCards:0, visible: false, cards: [
+                {id: 3, name: 'Done', numberOfCards:0, visible: false, visibleInputList: false, cards: [
                         {id: 5, authorID:0, listsID:3, name: 'Первая Done карточка', description: "Тестовая карточка", numberOfComments:2, comments: [
                                 {id: 0, authorID:0, cardsID:5, body: "Первый Done комментарий" },
                                 {id: 1, authorID:0, cardsID:5, body: "Первый Done комментарий" }
@@ -36,8 +38,6 @@ let store = {
                 {id:0, name: 'Nikita'}
             ],
             newListName: '',
-
-            newVisibleStatus: '',
 
             newCardName: '',
 
@@ -102,16 +102,22 @@ let store = {
                 mass.visible = action.newVisibleStatus
                 this._callSubscriber(this._state)
                 break;
+            case UPDATE_LIST_TITLE_VISIBLE_STATUS:
+                function choice(element) {
+                    return element.name === action.nameList;
+                }
+                let arr = this._state.BoardPage.lists.find(choice)
+                arr.visibleInputList = action.newVisibleStatus
+                this._callSubscriber(this._state)
+                break;
         }
     }
 }
 
 export const addListActionCreator = () => ({type: ADD_LIST})
-export const updateNewListNameActionCreator = (text) =>
-        ({type: UPDATE_NEW_LIST, newListName: text })
 
-export const addListVisibleActionCreator = () => ({type: ADD_LIST})
-
+export const updateListTitleVisibleActionCreator = (visibleStatus, nameList) =>
+        ({type: UPDATE_LIST_TITLE_VISIBLE_STATUS, newVisibleStatus: visibleStatus, nameList: nameList })
 
 export const updateNewListVisibleActionCreator = (visibleStatus, nameList) =>
     ({type: UPDATE_NEW_VISIBLE_STATUS, newVisibleStatus: visibleStatus, nameList: nameList})

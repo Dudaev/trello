@@ -2,27 +2,33 @@ import React, {Component} from 'react';
 import {Button, Card, Form, FormControl, InputGroup, ListGroup} from "react-bootstrap";
 import s from './Lists.module.css';
 import {
+    updateListTitleVisibleActionCreator,
     updateNewListVisibleActionCreator
 } from "../../../BLL/store";
 
 class Lists extends Component {
-    state = {
-    }
 
-    hideButtonSwohInput = (e,b) => {
+    showHideInputCard = (e, listName, cardVisible) => {
         e.preventDefault()
-        let visible = true
-        let action = updateNewListVisibleActionCreator(visible,b)
+        let action = updateNewListVisibleActionCreator(!cardVisible,listName)
         this.props.dispatch(action)
     }
-    swohButtonHideInput = (e,b) => {
+
+    showHideInputList = (e, listName, listVisible) => {
+        e.preventDefault()
+        let action = updateListTitleVisibleActionCreator(!listVisible,listName)
+        if (listVisible) {}
+        this.props.dispatch(action)
+        console.log('showInputList click')
+    }
+
+    HideInputList = (e,b) => {
         e.preventDefault()
         let visible = false
-        let action = updateNewListVisibleActionCreator(visible,b)
+        let action = updateListTitleVisibleActionCreator(visible,b)
         this.props.dispatch(action)
+        console.log('1111')
     }
-
-
 
     render() {
         const {lists} = this.props.BoardPage
@@ -34,11 +40,18 @@ class Lists extends Component {
                         });
                     return <div>
                         <Card style={{width: '18rem'}}>
-                            <Card.Header >{l.name}</Card.Header>
+                                <Card.Header >
+                                    {
+                                        !l.visibleInputList && <div onClick={ (e) => this.showHideInputList(e, l.name, l.visibleInputList) }>{l.name}</div>
+                                    }
+                                    {
+                                        l.visibleInputList &&  <FormControl onBlur={(e) => this.showHideInputList(e, l.name, l.visibleInputList)} />
+                                    }
+                                </Card.Header>
                             <Form.Group className="mb-0" controlId="formGridState">
                                 {cardsElements}
                                 {
-                                    !l.visible && <Button  onClick={ (e) => this.hideButtonSwohInput(e, l.name) } variant="outline-secondary" size="md" block>
+                                    !l.visible && <Button onClick={ (e) => this.showHideInputCard(e, l.name,l.visible) } variant="outline-secondary" size="md" block>
                                         Add card
                                     </Button>
                                 }
@@ -50,7 +63,7 @@ class Lists extends Component {
                                         aria-label="Enter a title for this card"
                                     />
                                     <InputGroup.Append>
-                                        <Button onClick={ (e) => this.swohButtonHideInput(e, l.name)} variant="outline-secondary">Add card</Button>
+                                        <Button onClick={ (e) => this.showHideInputCard(e, l.name, l.visible)} variant="outline-secondary">Add card</Button>
                                     </InputGroup.Append>
                                 </InputGroup>
                             }
