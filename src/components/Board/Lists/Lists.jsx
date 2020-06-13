@@ -25,7 +25,7 @@ class Lists extends Component {
             lists.map(function(lists) {
                     let cardsElements =
                         lists.cards.map(function(cards) {
-                            return <ListGroup.Item><div>{cards.name}</div><div className={s.comment}>Com {cards.numberOfComments}</div></ListGroup.Item>;
+                            return <ListGroup.Item><div>{cards.name}</div><div className={s.comment}>Com {cards.comments.length} </div></ListGroup.Item>;
                         });
                     return <div>
                         <Card style={{width: '18rem'}}>
