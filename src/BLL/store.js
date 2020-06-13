@@ -4,11 +4,13 @@ const UPDATE_NEW_LIST = 'UPDATE_NEW_LIST';
 const ADD_CARD = 'ADD_CARD';
 const UPDATE_NEW_CARD = 'UPDATE_NEW_CARD';
 
+const UPDATE_NEW_VISIBLE_STATUS = 'UPDATE_NEW_VISIBLE_STATUS';
+
 let store = {
     _state: {
         BoardPage:{
             lists: [
-                {id: 0, name: 'TODO', numberOfCards:1, cards: [
+                {id: 0, name: 'TODO', numberOfCards:1, visible: false, cards: [
                         {id: 0, authorID:0, listsID:0, name: 'Первая TODO карточка', description: "Тестовая карточка", numberOfComments:0, comments: []},
                         {id: 1, authorID:0, listsID:0, name: 'Вторая TODO карточка', description: "Вторая тестовая карточка", numberOfComments:3, comments: [
                                 {id: 0, authorID:0, cardsID:1, body: "Первый TODO комментарий" },
@@ -16,14 +18,14 @@ let store = {
                                 {id: 2, authorID:0, cardsID:1, body: "Третий TODO комментарий" },
                             ]},
                     ] },
-                {id: 1, name: 'In Progress', numberOfCards:3, cards: [
+                {id: 1, name: 'In Progress', numberOfCards:3, visible: false, cards: [
                         {id: 2, authorID:0, listsID:1, name: 'Первая In Progress карточка', description: "Тестовая карточка", numberOfComments:0, comments: []},
                         {id: 3, authorID:0, listsID:1, name: 'Вторая In Progress карточка', description: "Тестовая карточка", numberOfComments:0, comments: []},
                     ] },
-                {id: 2, name: 'Testing', numberOfCards:0, cards: [
+                {id: 2, name: 'Testing', numberOfCards:0, visible: false, cards: [
                         {id: 4, authorID:0, listsID:2, name: 'Первая Testing карточка', description: "Тестовая карточка", numberOfComments:0, comments: []},
                     ] },
-                {id: 3, name: 'Done', numberOfCards:0, cards: [
+                {id: 3, name: 'Done', numberOfCards:0, visible: false, cards: [
                         {id: 5, authorID:0, listsID:3, name: 'Первая Done карточка', description: "Тестовая карточка", numberOfComments:2, comments: [
                                 {id: 0, authorID:0, cardsID:5, body: "Первый Done комментарий" },
                                 {id: 1, authorID:0, cardsID:5, body: "Первый Done комментарий" }
@@ -35,6 +37,7 @@ let store = {
             ],
             newListName: '',
 
+            newVisibleStatus: '',
 
             newCardName: '',
 
@@ -59,33 +62,46 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_LIST) {
-            let newList = {
-                id: 0,
-                name: this._state.BoardPage.newListName,
-                numberOfCards:0
-            };
-            this._state.BoardPage.lists.push(newList);
-            this._state.BoardPage.newListName = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_LIST) {
-            this._state.BoardPage.newListName = action.newListName;
-            this._callSubscriber(this._state)
-        } else if (action.type === ADD_CARD) {
-            let newCard = {
-                id: 0,
-                authorID:0,
-                listsID:0,
-                name: this._state.BoardPage.newCardName,
-                description: "Тестовая карточка",
-                numberOfComments:0
-            };
-            this._state.BoardPage.cards.push(newCard);
-            this._state.BoardPage.newCardName = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_NEW_CARD) {
-            this._state.BoardPage.newCardName = action.newCardName;
-            this._callSubscriber(this._state)
+        switch (action.type) {
+            case ADD_LIST:
+                let newList = {
+                    id: 0,
+                    name: this._state.BoardPage.newListName,
+                    numberOfCards: 0
+                };
+                this._state.BoardPage.lists.push(newList);
+                this._state.BoardPage.newListName = '';
+                this._callSubscriber(this._state);
+                break;
+            case UPDATE_NEW_LIST:
+                this._state.BoardPage.newVisibleStatus = action.newVisibleStatus;
+                this._callSubscriber(this._state)
+                break;
+            case ADD_CARD:
+                let newCard = {
+                    id: 0,
+                    authorID: 0,
+                    listsID: 0,
+                    name: this._state.BoardPage.newCardName,
+                    description: "Тестовая карточка",
+                    numberOfComments: 0
+                };
+                this._state.BoardPage.cards.push(newCard);
+                this._state.BoardPage.newCardName = '';
+                this._callSubscriber(this._state);
+                break;
+            case UPDATE_NEW_CARD:
+                this._state.BoardPage.newCardName = action.newCardName;
+                this._callSubscriber(this._state)
+                break;
+            case UPDATE_NEW_VISIBLE_STATUS:
+                function isPrime(element) {
+                    return element.name === action.nameList;
+                }
+                let mass = this._state.BoardPage.lists.find(isPrime)
+                mass.visible = action.newVisibleStatus
+                this._callSubscriber(this._state)
+                break;
         }
     }
 }
@@ -94,8 +110,16 @@ export const addListActionCreator = () => ({type: ADD_LIST})
 export const updateNewListNameActionCreator = (text) =>
         ({type: UPDATE_NEW_LIST, newListName: text })
 
+export const addListVisibleActionCreator = () => ({type: ADD_LIST})
+
+
+export const updateNewListVisibleActionCreator = (visibleStatus, nameList) =>
+    ({type: UPDATE_NEW_VISIBLE_STATUS, newVisibleStatus: visibleStatus, nameList: nameList})
+
 export const addCardActionCreator = () => ({type: ADD_CARD})
-export const updateNewCardNameActionCreator = (text) =>
-    ({type: UPDATE_NEW_CARD, newCardName: text })
+export const updateNewCardNameActionCreator = (visibleStatus) =>
+    ({type: UPDATE_NEW_CARD, visible: visibleStatus })
 
 export default store;
+
+window.store = store;
