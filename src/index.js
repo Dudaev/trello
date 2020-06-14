@@ -6,16 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import store from "./BLL/store"
 import {BrowserRouter} from "react-router-dom";
 
-let rerenderEntireTree = (state) => {
+
     ReactDOM.render(
         <BrowserRouter>
-            <App state={state} dispatch={store.dispatch.bind(store)} />
+            <App state={store} />
         </BrowserRouter>, document.getElementById('root'));
-}
 
-rerenderEntireTree(store.getState());
 
-store.subscribe(rerenderEntireTree);
 
 
 // If you want your app to work offline and load faster, you can change
