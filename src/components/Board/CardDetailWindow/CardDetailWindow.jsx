@@ -8,7 +8,7 @@ class CardDetailWindow extends Component {
 
         return (
             <div>
-                <Modal show={visible} onHide={false}>
+                <Modal show={visible}>
                     <Modal.Header closeButton>
                         <Modal.Title>Card name</Modal.Title>
                     </Modal.Header>

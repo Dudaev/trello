@@ -13,7 +13,7 @@ class Login extends Component {
         const { visible } = this.state
         return (
             <div>
-                <Modal show={visible} onHide={false}>
+                <Modal show={visible} >
                     <Modal.Header closeButton>
                         <Modal.Title>Enter your name</Modal.Title>
                     </Modal.Header>
