@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Button, Col, Form, Modal} from "react-bootstrap";
 
-class Popup extends Component {
+class Login extends Component {
     state = {
-        visible: false,
+        visible: true,
     }
-    handleReadMoreClck = (e) => {
+    handleClosingWindow = (e) => {
         e.preventDefault()
         this.setState({ visible: false })
     }
@@ -25,7 +25,7 @@ class Popup extends Component {
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={ this.handleReadMoreClck } variant="secondary" >
+                        <Button onClick={ this.handleClosingWindow } variant="secondary" >
                             Close
                         </Button>
                         <Button variant="primary" >
@@ -38,4 +38,4 @@ class Popup extends Component {
     }
 }
 
-export default Popup;
+export default Login;
