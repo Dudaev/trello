@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import MyCard from "./MyCard/MyCard";
 import CardComposerContainer from "./CardComposerContainer/CardComposerContainer";
 import ListHeader from "./ListHeader/ListHeader";
@@ -7,11 +7,11 @@ import ListHeader from "./ListHeader/ListHeader";
 class List extends React.Component {
     state = {visible: false}
 
-    handleShowInput= (e) => {
+    handleShowInput= () => {
         this.setState({visible: true})
     }
 
-    handleHideInput= (e) => {
+    handleHideInput= () => {
         this.setState({visible: false})
     }
 
@@ -26,16 +26,7 @@ class List extends React.Component {
                 <Card style={{width: '18rem'}}>
                     <ListHeader name={this.props.name}/>
                     {cardsElements}
-                    {
-                        !visible && <Button onClick={ this.handleShowInput } variant="outline-secondary" size="md" block>
-                            Add card
-                        </Button>
-                    }
-
-                    {
-                        visible && <CardComposerContainer onVisibleChange={this.handleHideInput}/>
-
-                    }
+                    <CardComposerContainer handleShowInput={this.handleShowInput} handleHideInput={this.handleHideInput} visble={visible}/>
 
                 </Card>
             </div>
