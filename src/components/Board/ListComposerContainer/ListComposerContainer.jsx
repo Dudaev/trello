@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Button, FormControl, InputGroup} from "react-bootstrap";
+import s from "./ListComposerContainer.module.css"
 
 const ListComposerContainer = (props) => {
     const [title, setTitle] = useState('');
@@ -11,7 +12,7 @@ const ListComposerContainer = (props) => {
     }
 
     return (
-        <div>
+        <div className={s.composer}>
             {
                 !visible && <Button onClick={ () => setVisible(true) } variant="outline-secondary" size="md" block>
                     Add card

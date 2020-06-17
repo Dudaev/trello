@@ -1,8 +1,8 @@
 import React from 'react';
 import {Card} from "react-bootstrap";
-import MyCard from "./MyCard/MyCard";
 import CardComposerContainer from "./CardComposerContainer/CardComposerContainer";
 import ListHeader from "./ListHeader/ListHeader";
+import Cards from "./Cards/Cards";
 
 class List extends React.Component {
     state = {visible: false}
@@ -17,17 +17,12 @@ class List extends React.Component {
 
     render() {
         const { visible } = this.state
-        let cardsElements =
-            this.props.cards.map(function (c) {
-                return <MyCard key={c.id} name={c.name} comment={c.comments.length}/>
-            });
         return (
             <div>
                 <Card style={{width: '18rem'}}>
                     <ListHeader name={this.props.name}/>
-                    {cardsElements}
+                    <Cards data={this.props.cards}/>
                     <CardComposerContainer handleShowInput={this.handleShowInput} handleHideInput={this.handleHideInput} visble={visible}/>
-
                 </Card>
             </div>
         );

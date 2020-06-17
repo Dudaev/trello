@@ -1,7 +1,7 @@
 import React from 'react';
-import s from "../MyCard/MyCards.module.css";
+import s from "./MyCards.module.css";
 import {ListGroup} from "react-bootstrap";
-import CardDetailWindow from "../../../CardDetailWindow/CardDetailWindow";
+import CardDetailWindow from "../../../../CardDetailWindow/CardDetailWindow";
 
 class MyCard extends React.Component {
     state = {
@@ -28,7 +28,6 @@ class MyCard extends React.Component {
                 {
                     visible && <CardDetailWindow visible={visible} handleClosingWindow={this.handleClosingWindow}/>
                 }
-
             </div>
         );
     }
