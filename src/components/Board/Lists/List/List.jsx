@@ -8,7 +8,7 @@ function List(props) {
     return (
         <div>
             <Card style={{width: '18rem'}}>
-                <ListHeader name={props.name}/>
+                <ListHeader name={props.name} updateListTitle={props.updateListTitle} idList={props.listId}/>
                 <Cards dataCards={props.dataCards} dataComments={props.dataComments} idList={props.listId} removeCard={props.removeCard}/>
                 <CardComposerContainer addCardItem={props.addCardItem} idList={props.listId} dataCards={props.dataCards}/>
             </Card>

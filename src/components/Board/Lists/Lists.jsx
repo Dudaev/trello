@@ -11,7 +11,9 @@ const Lists = (props) => {
                      dataCards={props.dataCards}
                      dataComments={props.dataComments}
                      addCardItem={props.addCardItem}
-                     removeCard={props.removeCard}/>
+                     removeCard={props.removeCard}
+                     updateListTitle={props.updateListTitle}
+        />
     });
     return (
         <>

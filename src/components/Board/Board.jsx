@@ -77,6 +77,16 @@ function Board() {
 
     const addListItem = newItem => setLists([...lists, newItem]);
 
+    const updateListTitle = (listId, newTitle) => {
+        const newLists = lists.map(list => {
+            if (list.id === listId) {
+                return { ...list, name: newTitle };
+            }
+            return list;
+        });
+        setLists(newLists);
+    };
+
     const addCardItem = newItem => setСards([...cards, newItem]);
 
     const removeCard = cardId => {
@@ -87,23 +97,12 @@ function Board() {
     return (
         <div>
             <div className={s.container}>
-                <Lists dataLists={lists} dataCards={cards} dataComments={comments} addCardItem={addCardItem} removeCard={removeCard}/>
+                <Lists dataLists={lists} dataCards={cards} dataComments={comments} addCardItem={addCardItem} removeCard={removeCard} updateListTitle={updateListTitle}/>
                 <div>
                     <ListComposerContainer  addListItem={addListItem}
                                             // addCardItem={addCardItem}
                                             id={lists.length}/>
                 </div>
-                <Button
-                    onClick={ () => addCardItem(
-                        {
-                    id: 0,
-                    authorID: 0,
-                    listsID: 0,
-                    name: '1',
-                    description: "1",
-                }
-                )}
-                variant="outline-secondary">Add card</Button>
             </div>
         </div>
     );

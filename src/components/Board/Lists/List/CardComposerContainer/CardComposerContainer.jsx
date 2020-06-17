@@ -21,8 +21,8 @@ const CardComposerContainer = (props) => {
                 visible && <InputGroup>
                     <FormControl
                         value={title}
-                        placeholder="Enter a title for this card"
-                        aria-label="Enter a title for this card"
+                        placeholder="Enter list title"
+                        aria-label="Enter list title"
                         onChange={(e) => setTitle(e.target.value)}
                     />
                     <InputGroup.Append>
