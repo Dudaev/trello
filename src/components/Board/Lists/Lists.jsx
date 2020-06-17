@@ -4,8 +4,8 @@ import List from "./List/List";
 
 const Lists = (props) => {
 
-    let listsElements =  props.data.map((l) => {
-        return <List key={l.id} name={l.name} cards={l.cards}/>
+    let listsElements =  props.dataLists.map((l) => {
+        return <List key={l.id} listId={l.id} name={l.name} dataCards={props.dataCards} dataComments={props.dataComments}/>
     });
     return (
         <>

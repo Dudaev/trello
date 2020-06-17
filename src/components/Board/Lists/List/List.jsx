@@ -4,19 +4,16 @@ import CardComposerContainer from "./CardComposerContainer/CardComposerContainer
 import ListHeader from "./ListHeader/ListHeader";
 import Cards from "./Cards/Cards";
 
-class List extends React.Component {
-
-    render() {
-        return (
-            <div>
-                <Card style={{width: '18rem'}}>
-                    <ListHeader name={this.props.name}/>
-                    <Cards data={this.props.cards}/>
-                    <CardComposerContainer handleShowInput={this.handleShowInput} handleHideInput={this.handleHideInput} />
-                </Card>
-            </div>
-        );
-    }
+function List(props) {
+    return (
+        <div>
+            <Card style={{width: '18rem'}}>
+                <ListHeader name={props.name}/>
+                <Cards dataCards={props.dataCards} dataComments={props.dataComments} idList={props.listId}/>
+                <CardComposerContainer/>
+            </Card>
+        </div>
+    );
 }
 
 export default List;
