@@ -15,7 +15,7 @@ const ListComposerContainer = (props) => {
         <div className={s.composer}>
             {
                 !visible && <Button onClick={ () => setVisible(true) } variant="outline-secondary" size="md" block>
-                    Add card
+                    Add list
                 </Button>
             }
 
@@ -27,7 +27,7 @@ const ListComposerContainer = (props) => {
                                  onChange={(e) => {setTitle(e.target.value)}}
                     />
                     <InputGroup.Append>
-                        <Button onClick={ () => addListItem({id: props.id, name: title, cards: []}) } variant="outline-secondary">Add card</Button>
+                        <Button onClick={ () => addListItem({id: props.id, name: title, cards: []}) } variant="outline-secondary">Add list</Button>
                     </InputGroup.Append>
                 </InputGroup>
 

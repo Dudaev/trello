@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import s from './Board.module.css';
 import ListComposerContainer from "./ListComposerContainer/ListComposerContainer";
 import Lists from "./Lists/Lists";
-
+import {Button} from "react-bootstrap";
 
 function Board() {
     const [lists, setLists] = useState([
@@ -90,14 +90,33 @@ function Board() {
         return setLists([...lists, newItem]);
     }
 
+    function addCardItem(newItem) {
+        return setLists([...lists[0].cards , newItem] );
+    }
+
 
     return (
         <div>
             <div className={s.container}>
                 <Lists data={lists}/>
                 <div>
-                    <ListComposerContainer  addListItem={addListItem} id={lists.length}/>
+                    <ListComposerContainer  addListItem={addListItem}
+                                            // addCardItem={addCardItem}
+                                            id={lists.length}/>
                 </div>
+                <Button
+                    onClick={ () => addCardItem(
+                        [{
+                    id: 0,
+                    authorID: 0,
+                    listsID: 0,
+                    name: '1',
+                    description: "1",
+                    numberOfComments: 0,
+                    comments: []
+                }]
+                )}
+                variant="outline-secondary">Add card</Button>
             </div>
         </div>
     );
