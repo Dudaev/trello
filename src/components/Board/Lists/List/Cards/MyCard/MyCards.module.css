@@ -1,3 +1,15 @@
 .comment{
     text-align: right;
 }
+.close{
+    position: absolute;
+    right: 10px;
+    top: 2px;
+    padding: 0;
+    text-align: right;
+    z-index: 1;
+}
+
+.container{
+    position: relative;
+}

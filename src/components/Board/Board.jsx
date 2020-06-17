@@ -22,11 +22,11 @@ function Board() {
     ]);
     const [cards, setСards] = useState([
         {
-        id: 0,
-        authorID: 0,
-        listsID: 0,
-        name: 'Первая TODO карточка',
-        description: "Тестовая карточка",
+            id: 0,
+            authorID: 0,
+            listsID: 0,
+            name: 'Первая TODO карточка',
+            description: "Тестовая карточка",
         },
         {
             id: 1,
@@ -75,35 +75,35 @@ function Board() {
 
 
 
-    function addListItem(newItem) {
-        return setLists([...lists, newItem]);
-    }
+    const addListItem = newItem => setLists([...lists, newItem]);
 
-    function addCardItem(newItem) {
-        return setСards([...cards, newItem]);
-    }
+    const addCardItem = newItem => setСards([...cards, newItem]);
 
+    const removeCard = cardId => {
+        const newCards = cards.filter(({ id }) => id !== cardId);
+        setСards(newCards);
+    };
 
     return (
         <div>
             <div className={s.container}>
-                <Lists dataLists={lists} dataCards={cards} dataComments={comments}/>
+                <Lists dataLists={lists} dataCards={cards} dataComments={comments} addCardItem={addCardItem} removeCard={removeCard}/>
                 <div>
                     <ListComposerContainer  addListItem={addListItem}
                                             // addCardItem={addCardItem}
                                             id={lists.length}/>
                 </div>
-                {/*<Button*/}
-                {/*    onClick={ () => addCardItem(*/}
-                {/*        {*/}
-                {/*    id: 0,*/}
-                {/*    authorID: 0,*/}
-                {/*    listsID: 0,*/}
-                {/*    name: '1',*/}
-                {/*    description: "1",*/}
-                {/*}*/}
-                {/*)}*/}
-                {/*variant="outline-secondary">Add card</Button>*/}
+                <Button
+                    onClick={ () => addCardItem(
+                        {
+                    id: 0,
+                    authorID: 0,
+                    listsID: 0,
+                    name: '1',
+                    description: "1",
+                }
+                )}
+                variant="outline-secondary">Add card</Button>
             </div>
         </div>
     );

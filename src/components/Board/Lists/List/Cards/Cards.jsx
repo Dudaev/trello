@@ -7,7 +7,7 @@ const Cards = (props) => {
 
     const cardsElements = newCards.map(function (c) {
         const Comments = props.dataComments.filter((com) => com.cardsID === c.id);
-            return <MyCard key={c.id} name={c.name} comment={Comments.length}/>
+            return <MyCard key={c.id} cardId={c.id} name={c.name} comment={Comments.length} removeCard={props.removeCard}/>
         });
     return (
         <div>

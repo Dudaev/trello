@@ -9,8 +9,8 @@ function List(props) {
         <div>
             <Card style={{width: '18rem'}}>
                 <ListHeader name={props.name}/>
-                <Cards dataCards={props.dataCards} dataComments={props.dataComments} idList={props.listId}/>
-                <CardComposerContainer/>
+                <Cards dataCards={props.dataCards} dataComments={props.dataComments} idList={props.listId} removeCard={props.removeCard}/>
+                <CardComposerContainer addCardItem={props.addCardItem} idList={props.listId} dataCards={props.dataCards}/>
             </Card>
         </div>
     );

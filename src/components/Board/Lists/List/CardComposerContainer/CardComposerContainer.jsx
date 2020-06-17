@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 
-const CardComposerContainer = () => {
+const CardComposerContainer = (props) => {
     const [title, setTitle] = useState('');
     const [visible, setVisible] = useState(false)
 
-    function handleAddAndHide() {
+    function handleAddAndHide(newItem) {
         setVisible(false)
-        // Вызово колбека для добавления карточки
+        props.addCardItem(newItem)
     }
     return (
         <div>
@@ -26,7 +26,14 @@ const CardComposerContainer = () => {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                     <InputGroup.Append>
-                        <Button onClick={ handleAddAndHide } variant="outline-secondary">Add card</Button>
+                        <Button onClick={ () => handleAddAndHide({
+                            id: props.dataCards.length,
+                            authorID: 0,
+                            listsID: props.idList,
+                            name: title,
+                            description: "",
+                        }) }
+                            variant="outline-secondary">Add card</Button>
                     </InputGroup.Append>
                 </InputGroup>
 
