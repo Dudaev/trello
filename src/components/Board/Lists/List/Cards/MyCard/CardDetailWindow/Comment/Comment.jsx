@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import s from "../CardDetailWindow.module.css";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 
 const Comment = (props) => {
@@ -16,7 +15,7 @@ const Comment = (props) => {
     }
 
     return (
-        <div className={s.comment} key={props.id}>
+        <div key={props.id}>
             <div><b>{props.author}</b></div>
             {
                 !visible && <div >

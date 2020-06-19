@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, FormControl, InputGroup} from "react-bootstrap";
-import s from "./ListComposerContainer.module.css"
+import styles from "./ListComposerContainer.module.css"
 
 const ListComposerContainer = (props) => {
     const [title, setTitle] = useState('');
@@ -12,7 +12,7 @@ const ListComposerContainer = (props) => {
     }
 
     return (
-        <div className={s.composer}>
+        <div className={styles.composer}>
             {
                 !visible && <Button onClick={ () => setVisible(true) } variant="outline-secondary" size="md" block>
                     Add list

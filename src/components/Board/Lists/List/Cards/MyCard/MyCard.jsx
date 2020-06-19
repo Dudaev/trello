@@ -1,7 +1,7 @@
 import React from 'react';
-import s from "./MyCards.module.css";
+import styles from "./MyCards.module.css";
 import {ListGroup, Button} from "react-bootstrap";
-import CardDetailWindow from "./CardDetailWindow/CardDetailWindow";
+import CardDetailWindow from "./CardDetailWindow/CardDetailWindow.jsx";
 
 class MyCard extends React.Component {
     state = {
@@ -25,11 +25,11 @@ class MyCard extends React.Component {
         const comment = this.props.comment.length
         const nameList = this.props.nameList
         return (
-            <div className={s.container}>
-                <Button onClick={this.removeCard} className={s.close} variant="link">X</Button>
+            <div className={styles.container}>
+                <Button onClick={this.removeCard} className={styles.close} variant="link">X</Button>
                 <ListGroup.Item onClick={ this.handleOpenWindow }>
                     <div>{name}</div>
-                    <div className={s.comment}>Com {comment}</div>
+                    <div className={styles.comment}>Com {comment}</div>
                 </ListGroup.Item>
                 {
                     visible && <CardDetailWindow visible={visible}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import s from './Board.module.css';
+import styles from './Board.module.css';
 
 import Lists from './Lists/Lists.jsx';
 
@@ -124,7 +124,7 @@ function Board() {
 
   return (
     <div>
-      <div className={s.container}>
+      <div className={styles.container}>
         <Lists
           dataLists={lists}
           dataCards={cards}
@@ -139,11 +139,6 @@ function Board() {
           author={author}
           handleUpdateCardTitle={handleUpdateCardTitle}
         />
-        <div>
-          {/* <ListComposerContainer  addListItem={addListItem} */}
-          {/*                        // addCardItem={addCardItem} */}
-          {/*                        id={lists.length}/> */}
-        </div>
       </div>
       {dataAuthor === '' && <Login handleAddAuthor={handleAddAuthor} author={author} />}
     </div>
