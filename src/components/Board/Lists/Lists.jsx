@@ -10,14 +10,14 @@ const Lists = (props) => {
                      name={l.name}
                      dataCards={props.dataCards}
                      dataComments={props.dataComments}
-                     addCardItem={props.addCardItem}
-                     removeCard={props.removeCard}
-                     updateListTitle={props.updateListTitle}
+                     handleAddCard={props.handleAddCard}
+                     handleRemoveCard={props.handleRemoveCard}
+                     handleUpdateListTitle={props.handleUpdateListTitle}
                      handleAddDescription={props.handleAddDescription}
                      handleAddComment={props.handleAddComment}
                      handleRemoveComment={props.handleRemoveComment}
                      handleUpdateComment={props.handleUpdateComment}
-                     author={props.author}
+                     author={props.dataAuthor}
                      handleUpdateCardTitle={props.handleUpdateCardTitle}
         />
     });

@@ -15,9 +15,8 @@ class MyCard extends React.Component {
         e.preventDefault()
         this.setState({ visible: true })
     }
-
     removeCard = () => {
-        this.props.removeCard(this.props.cardId)
+        this.props.handleRemoveCard(this.props.cardId)
     }
     render() {
         const { visible } = this.state

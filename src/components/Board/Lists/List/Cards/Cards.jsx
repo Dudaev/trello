@@ -14,7 +14,7 @@ const Cards = (props) => {
                            nameList={props.nameList}
                            comment={Comments}
                            dataComments={props.dataComments}
-                           removeCard={props.removeCard}
+                           handleRemoveCard={props.handleRemoveCard}
                            handleAddDescription={props.handleAddDescription}
                            handleAddComment={props.handleAddComment}
                            handleRemoveComment={props.handleRemoveComment}

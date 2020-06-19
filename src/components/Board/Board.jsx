@@ -23,7 +23,7 @@ function Board() {
   const [comments, setComments] = useState(initialComments);
   const [author, setAuthor] = useState(initialAuthor);
 
-  const updateListTitle = (listId, newTitle) => {
+  const handleUpdateListTitle = (listId, newTitle) => {
     const newLists = lists.map(list => {
       if (list.id === listId) {
         return { ...list, name: newTitle };
@@ -33,10 +33,10 @@ function Board() {
     setLists(newLists);
   };
 
-  const addCardItem = newItem => {
-    setCards([...cards, newItem]);
+  const handleAddCard = newCard => {
+    setCards([...cards, newCard]);
   };
-  const removeCard = cardId => {
+  const handleRemoveCard = cardId => {
     const newCards = cards.filter(({ id }) => id !== cardId);
     setCards(newCards);
 
@@ -92,7 +92,8 @@ function Board() {
     localStorage.setItem('comments', JSON.stringify(comments));
     localStorage.setItem('lists', JSON.stringify(lists));
     localStorage.setItem('author', JSON.stringify(author));
-    }, [cards, comments, lists, author]);
+    }, [cards, comments, lists, author]
+  );
 
   return (
     <div>
@@ -101,14 +102,14 @@ function Board() {
           dataLists={lists}
           dataCards={cards}
           dataComments={comments}
-          addCardItem={addCardItem}
-          removeCard={removeCard}
-          updateListTitle={updateListTitle}
+          dataAuthor={author}
+          handleAddCard={handleAddCard}
+          handleRemoveCard={handleRemoveCard}
+          handleUpdateListTitle={handleUpdateListTitle}
           handleAddDescription={handleAddDescription}
           handleAddComment={handleAddComment}
           handleRemoveComment={handleRemoveComment}
           handleUpdateComment={handleUpdateComment}
-          author={author}
           handleUpdateCardTitle={handleUpdateCardTitle}
         />
       </div>
