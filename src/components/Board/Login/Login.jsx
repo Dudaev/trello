@@ -16,7 +16,7 @@ const Login = (props) => {
         return (
             <div>
                 <Modal show={visible} >
-                    <Modal.Header closeButton>
+                    <Modal.Header>
                         <Modal.Title>Enter your name</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>

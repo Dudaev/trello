@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Button, FormControl, InputGroup, Modal} from "react-bootstrap";
 import Comment from "./Comment/Comment";
 import Description from "./Description/Description";
+import CardHeader from "./CardHeader/CardHeader";
 
 function CardDetailWindow(props) {
     const [comment, setComment] = useState('')
@@ -45,7 +46,10 @@ function CardDetailWindow(props) {
         <div>
             <Modal show={props.visible}>
                 <Modal.Header>
-                    <Modal.Title>{props.cardName}</Modal.Title>
+                    {/*<Modal.Title>{props.cardName}</Modal.Title>*/}
+                    <CardHeader title={props.cardName}
+                                cardId={props.cardId}
+                                handleUpdateCardTitle={props.handleUpdateCardTitle}/>
                 </Modal.Header>
 
                 <Modal.Body>
@@ -72,10 +76,6 @@ function CardDetailWindow(props) {
                 <Modal.Footer>
                     <Button onClick={props.handleClosingWindow} variant="secondary">
                         Close
-                    </Button>
-
-                    <Button variant="primary">
-                        Save
                     </Button>
                 </Modal.Footer>
             </Modal>

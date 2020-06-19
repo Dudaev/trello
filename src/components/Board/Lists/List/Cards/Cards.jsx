@@ -19,6 +19,7 @@ const Cards = (props) => {
                            handleAddComment={props.handleAddComment}
                            handleRemoveComment={props.handleRemoveComment}
                            handleUpdateComment={props.handleUpdateComment}
+                           handleUpdateCardTitle={props.handleUpdateCardTitle}
             />
         });
     return (

@@ -67,6 +67,17 @@ function Board() {
         setComments(JSON.parse(localStorage.getItem('comments'))  )
 
     };
+    const handleUpdateCardTitle = (cardId, newTitle) => {
+        const newCards = cards.map(c => {
+            if (c.id === cardId) {
+                return { ...c, name: newTitle };
+            }
+            return c;
+        });
+        localStorage.setItem('cards', JSON.stringify(newCards))
+        setCards(JSON.parse(localStorage.getItem('cards'))  )
+    }
+
     const handleAddDescription = (newDescription, cardId) => {
         const newCards = cards.map(c => {
             if (c.id === cardId) {
@@ -120,6 +131,7 @@ function Board() {
                        handleRemoveComment={handleRemoveComment}
                        handleUpdateComment={handleUpdateComment}
                        author={author}
+                       handleUpdateCardTitle={handleUpdateCardTitle}
                 />
                 <div>
                     {/*<ListComposerContainer  addListItem={addListItem}*/}

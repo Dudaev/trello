@@ -18,6 +18,7 @@ function List(props) {
                        handleAddComment={props.handleAddComment}
                        handleRemoveComment={props.handleRemoveComment}
                        handleUpdateComment={props.handleUpdateComment}
+                       handleUpdateCardTitle={props.handleUpdateCardTitle}
                 />
                 <CardComposerContainer addCardItem={props.addCardItem}
                                        idList={props.listId}

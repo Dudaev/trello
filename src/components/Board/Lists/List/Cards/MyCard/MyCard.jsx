@@ -45,6 +45,7 @@ class MyCard extends React.Component {
                                                  handleAddComment={this.props.handleAddComment}
                                                  handleRemoveComment={this.props.handleRemoveComment}
                                                  handleUpdateComment={this.props.handleUpdateComment}
+                                                 handleUpdateCardTitle={this.props.handleUpdateCardTitle}
                     />
                 }
             </div>
