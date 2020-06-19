@@ -1,62 +1,63 @@
-import React, {useState} from 'react';
-import {Button, FormControl, InputGroup} from "react-bootstrap";
+import React, { useState } from 'react';
+import { Button, FormControl, InputGroup } from 'react-bootstrap';
 
-const CardComposerContainer = (props) => {
-    const [title, setTitle] = useState('');
-    const [visible, setVisible] = useState(false)
+const CardComposerContainer = props => {
+  const [title, setTitle] = useState('');
+  const [visible, setVisible] = useState(false);
 
-    function handleAddAndHide() {
-        setVisible(false)
-        let i = 0;
-        let result = true;
-        while (true) {
-            for (let j = 0; j < props.dataCards.length; j++) {
-                if (i === props.dataCards[j].id) {
-                    result = false
-                    break
-                } else {
-                    result = true
-                }
-            }
-            if (result === true) {
-                break
-            }
-            i++
+  function handleAddAndHide() {
+    setVisible(false);
+    let i = 0;
+    let result = true;
+    while (true) {
+      for (let j = 0; j < props.dataCards.length; j++) {
+        if (i === props.dataCards[j].id) {
+          result = false;
+          break;
+        } else {
+          result = true;
         }
-
-        props.addCardItem({
-            id: i,
-            authorID: props.author,
-            listsID: props.idList,
-            name: title,
-            description: "",
-        })
-        setTitle('')
+      }
+      if (result === true) {
+        break;
+      }
+      i++;
     }
-    return (
-        <div>
-            {
-                !visible && <Button onClick={ () => setVisible(true) } variant="outline-secondary" size="md" block>
-                    Add card
-                </Button>
-            }
 
-            {
-                visible && <InputGroup>
-                    <FormControl
-                        value={title}
-                        placeholder="Enter a title for this card"
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                    <InputGroup.Append>
-                        <Button onClick={ () => handleAddAndHide() }
-                            variant="outline-secondary">Add card</Button>
-                    </InputGroup.Append>
-                </InputGroup>
+    props.addCardItem({
+      id: i,
+      authorID: props.author,
+      listsID: props.idList,
+      name: title,
+      description: '',
+    });
+    setTitle('');
+  }
+  return (
+    <div>
+      {!visible && (
+        <Button onClick={() => setVisible(true)} variant="outline-secondary" size="md" block>
+          Add card
+        </Button>
+      )}
 
-            }
-        </div>
-    );
+      {visible && (
+        <InputGroup>
+          <FormControl
+            value={title}
+            placeholder="Enter a title for this card"
+            onChange={e => setTitle(e.target.value)}
+          />
+          <InputGroup.Append>
+            <Button onClick={() => handleAddAndHide()} variant="outline-secondary">
+              Add card
+            </Button>
+          </InputGroup.Append>
+        </InputGroup>
+        )}
+    </div>
+  )
+
 };
 
 export default CardComposerContainer;
