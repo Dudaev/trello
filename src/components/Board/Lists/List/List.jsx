@@ -22,6 +22,7 @@ function List(props) {
                 <CardComposerContainer addCardItem={props.addCardItem}
                                        idList={props.listId}
                                        dataCards={props.dataCards}
+                                       author={props.author}
                 />
             </Card>
         </div>

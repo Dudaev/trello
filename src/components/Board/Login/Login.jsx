@@ -1,16 +1,18 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {Button, Col, Form, Modal} from "react-bootstrap";
 
-class Login extends Component {
-    state = {
-        visible: true,
+const Login = (props) => {
+    const [visible, setVisible] = useState(true);
+    const [name, setName] = useState(props.author);
+
+    const handleClosingWindow = () => {
+        setVisible(false )
     }
-    handleClosingWindow = (e) => {
-        e.preventDefault()
-        this.setState({ visible: false })
+    const setNewAuthor = () => {
+        props.handleAddAuthor(name)
+        setVisible(false )
     }
-    render() {
-        const { visible } = this.state
+
         return (
             <div>
                 <Modal show={visible} >
@@ -20,15 +22,20 @@ class Login extends Component {
                     <Modal.Body>
                         <Form>
                             <Form.Group as={Col} controlId="formGridState">
-                                <Form.Control type="text" placeholder="name" />
+                                <Form.Control
+                                    value={name}
+                                    type="text"
+                                    placeholder="name"
+                                    onChange={(e) => setName(e.target.value)}
+                                />
                             </Form.Group>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={ this.handleClosingWindow } variant="secondary" >
+                        <Button onClick={ handleClosingWindow } variant="secondary" >
                             Close
                         </Button>
-                        <Button variant="primary" >
+                        <Button onClick={setNewAuthor} variant="primary" >
                             Save
                         </Button>
                     </Modal.Footer>
@@ -36,6 +43,6 @@ class Login extends Component {
             </div>
         );
     }
-}
+
 
 export default Login;

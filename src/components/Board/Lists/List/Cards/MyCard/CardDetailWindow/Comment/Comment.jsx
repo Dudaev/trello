@@ -17,7 +17,7 @@ const Comment = (props) => {
 
     return (
         <div className={s.comment} key={props.id}>
-            <div>AuthorName</div>
+            <div><b>{props.author}</b></div>
             {
                 !visible && <div >
                     {props.body}

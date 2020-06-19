@@ -26,7 +26,7 @@ const CardComposerContainer = (props) => {
 
         props.addCardItem({
             id: i,
-            authorID: 0,
+            authorID: props.author,
             listsID: props.idList,
             name: title,
             description: "",

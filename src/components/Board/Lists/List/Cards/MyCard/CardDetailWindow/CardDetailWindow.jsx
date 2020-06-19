@@ -37,6 +37,7 @@ function CardDetailWindow(props) {
                         body={comments.body}
                         handleRemoveComment={props.handleRemoveComment}
                         handleUpdateComment={ props.handleUpdateComment}
+                        author={props.author}
         />
     })
     
@@ -49,7 +50,7 @@ function CardDetailWindow(props) {
 
                 <Modal.Body>
                     <div><b>in list</b> {props.nameList}</div>
-                    <div><b>Author</b> AuthorName</div>
+                    <div><b>Author</b> {props.author}</div>
                     <div><b>Description</b></div>
 
                     <Description cardId={props.cardId}

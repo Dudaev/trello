@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import s from './Board.module.css';
 import ListComposerContainer from "./ListComposerContainer/ListComposerContainer";
 import Lists from "./Lists/Lists";
+import Login from "./Login/Login";
 
 function Board() {
     let dataLists
@@ -16,50 +17,6 @@ function Board() {
         dataCards = JSON.parse(localStorage.getItem('cards'))
     } else {
         dataCards = []
-            // [
-            //     {
-            //         id: 0,
-            //         authorID: 0,
-            //         listsID: 0,
-            //         name: 'Первая TODO карточка',
-            //         description: "Тестовая карточка",
-            //     },
-            //     {
-            //         id: 1,
-            //         authorID: 0,
-            //         listsID: 0,
-            //         name: 'Вторая TODO карточка',
-            //         description: "Вторая тестовая карточка",
-            //     },
-            //     {
-            //         id: 2,
-            //         authorID: 0,
-            //         listsID: 1,
-            //         name: 'Первая In Progress карточка',
-            //         description: "Тестовая карточка",
-            //     },
-            //     {
-            //         id: 3,
-            //         authorID: 0,
-            //         listsID: 1,
-            //         name: 'Вторая In Progress карточка',
-            //         description: "Тестовая карточка",
-            //     },
-            //     {
-            //         id: 4,
-            //         authorID: 0,
-            //         listsID: 2,
-            //         name: 'Первая Testing карточка',
-            //         description: "Тестовая карточка",
-            //     },
-            //     {
-            //         id: 5,
-            //         authorID: 0,
-            //         listsID: 3,
-            //         name: 'Первая Done карточка',
-            //         description: "Тестовая карточка",
-            //     }
-            // ]
     }
 
     let dataComments
@@ -67,56 +24,18 @@ function Board() {
         dataComments = JSON.parse(localStorage.getItem('comments'))
     } else {
         dataComments = []
-        // [
-        //     {
-        //         id: 0,
-        //         authorID: 0,
-        //         listsID: 0,
-        //         name: 'Первая TODO карточка',
-        //         description: "Тестовая карточка",
-        //     },
-        //     {
-        //         id: 1,
-        //         authorID: 0,
-        //         listsID: 0,
-        //         name: 'Вторая TODO карточка',
-        //         description: "Вторая тестовая карточка",
-        //     },
-        //     {
-        //         id: 2,
-        //         authorID: 0,
-        //         listsID: 1,
-        //         name: 'Первая In Progress карточка',
-        //         description: "Тестовая карточка",
-        //     },
-        //     {
-        //         id: 3,
-        //         authorID: 0,
-        //         listsID: 1,
-        //         name: 'Вторая In Progress карточка',
-        //         description: "Тестовая карточка",
-        //     },
-        //     {
-        //         id: 4,
-        //         authorID: 0,
-        //         listsID: 2,
-        //         name: 'Первая Testing карточка',
-        //         description: "Тестовая карточка",
-        //     },
-        //     {
-        //         id: 5,
-        //         authorID: 0,
-        //         listsID: 3,
-        //         name: 'Первая Done карточка',
-        //         description: "Тестовая карточка",
-        //     }
-        // ]
     }
 
+    let dataAuthor
+    if (localStorage.getItem('author')) {
+        dataAuthor = JSON.parse(localStorage.getItem('author'))
+    } else {
+        dataAuthor = ''
+    }
     const [lists, setLists] = useState(dataLists);
     const [cards, setCards] = useState(dataCards);
     const [comments, setComments] = useState(dataComments);
-
+    const [author, setAuthor] = useState(dataAuthor);
 
     // const addListItem = newItem => {
     //     localStorage.setItem('lists', JSON.stringify([...lists, newItem]))
@@ -182,6 +101,10 @@ function Board() {
         setComments(JSON.parse(localStorage.getItem('comments')))
     }
 
+    const handleAddAuthor = (newAuthor) => {
+        localStorage.setItem('author', JSON.stringify(newAuthor))
+        setAuthor(JSON.parse(localStorage.getItem('author'))  )
+    }
 
     return (
         <div>
@@ -196,6 +119,7 @@ function Board() {
                        handleAddComment={handleAddComment}
                        handleRemoveComment={handleRemoveComment}
                        handleUpdateComment={handleUpdateComment}
+                       author={author}
                 />
                 <div>
                     {/*<ListComposerContainer  addListItem={addListItem}*/}
@@ -203,6 +127,10 @@ function Board() {
                     {/*                        id={lists.length}/>*/}
                 </div>
             </div>
+            {
+                dataAuthor === '' && <Login handleAddAuthor={handleAddAuthor} author={author}/>
+            }
+
         </div>
     );
 }

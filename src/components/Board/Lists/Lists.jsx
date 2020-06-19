@@ -17,6 +17,7 @@ const Lists = (props) => {
                      handleAddComment={props.handleAddComment}
                      handleRemoveComment={props.handleRemoveComment}
                      handleUpdateComment={props.handleUpdateComment}
+                     author={props.author}
         />
     });
     return (

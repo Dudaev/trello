@@ -37,6 +37,7 @@ class MyCard extends React.Component {
                                                  cardName={name}
                                                  nameList={nameList}
                                                  cardId={this.props.cardId}
+                                                 author={this.props.author}
                                                  handleAddDescription={this.props.handleAddDescription}
                                                  CardDescription={this.props.CardDescription}
                                                  comments={this.props.comment}
