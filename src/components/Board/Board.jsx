@@ -6,42 +6,22 @@ import Lists from './Lists/Lists.jsx';
 import Login from './Login/Login.jsx';
 
 function Board() {
-  let dataLists;
-  if (localStorage.getItem('lists')) {
-    dataLists = JSON.parse(localStorage.getItem('lists'));
-  } else {
-    dataLists = [
-      { id: 0, name: 'TODO' },
-      { id: 1, name: 'In Progress' },
-      { id: 2, name: 'Testing' },
-      { id: 3, name: 'Done' },
-    ];
-  }
 
-  let dataCards;
-  if (localStorage.getItem('cards')) {
-    dataCards = JSON.parse(localStorage.getItem('cards'));
-  } else {
-    dataCards = [];
-  }
+  const initialLists =   JSON.parse(localStorage.getItem('lists')) || [
+    { id: 0, name: 'TODO' },
+    { id: 1, name: 'In Progress' },
+    { id: 2, name: 'Testing' },
+    { id: 3, name: 'Done' },
+  ];
+  const initialCards =   JSON.parse(localStorage.getItem('cards')) || [];
+  const initialComments =   JSON.parse(localStorage.getItem('comments')) || [];
+  const initialAuthor =   JSON.parse(localStorage.getItem('author')) || [];
 
-  let dataComments;
-  if (localStorage.getItem('comments')) {
-    dataComments = JSON.parse(localStorage.getItem('comments'));
-  } else {
-    dataComments = [];
-  }
 
-  let dataAuthor;
-  if (localStorage.getItem('author')) {
-    dataAuthor = JSON.parse(localStorage.getItem('author'));
-  } else {
-    dataAuthor = '';
-  }
-  const [lists, setLists] = useState(dataLists);
-  const [cards, setCards] = useState(dataCards);
-  const [comments, setComments] = useState(dataComments);
-  const [author, setAuthor] = useState(dataAuthor);
+  const [lists, setLists] = useState(initialLists);
+  const [cards, setCards] = useState(initialCards);
+  const [comments, setComments] = useState(initialComments);
+  const [author, setAuthor] = useState(initialAuthor);
 
   // const addListItem = newItem => {
   //     localStorage.setItem('lists', JSON.stringify([...lists, newItem]))
@@ -140,7 +120,7 @@ function Board() {
           handleUpdateCardTitle={handleUpdateCardTitle}
         />
       </div>
-      {dataAuthor === '' && <Login handleAddAuthor={handleAddAuthor} author={author} />}
+      {initialAuthor === '' && <Login handleAddAuthor={handleAddAuthor} author={author} />}
     </div>
   );
 }
