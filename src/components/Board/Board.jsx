@@ -44,21 +44,21 @@ function Board() {
     setComments(newComments);
   };
   const handleUpdateCardTitle = (cardId, newTitle) => {
-    const newCards = cards.map(c => {
-      if (c.id === cardId) {
-        return { ...c, name: newTitle };
+    const newCards = cards.map(card => {
+      if (card.id === cardId) {
+        return { ...card, name: newTitle };
       }
-      return c;
+      return card;
     });
     setCards(newCards);
   };
 
   const handleAddDescription = (newDescription, cardId) => {
-    const newCards = cards.map(c => {
-      if (c.id === cardId) {
-        return { ...c, description: newDescription };
+    const newCards = cards.map(card => {
+      if (card.id === cardId) {
+        return { ...card, description: newDescription };
       }
-      return c;
+      return cards;
     });
     localStorage.setItem('cards', JSON.stringify(newCards));
     setCards(JSON.parse(localStorage.getItem('cards')));
@@ -68,17 +68,17 @@ function Board() {
     setComments([...comments, newComment]);
   };
 
-  const handleRemoveComment = comId => {
-    const newComments = comments.filter(({ id }) => id !== comId);
+  const handleRemoveComment = commentId => {
+    const newComments = comments.filter(({ id }) => id !== commentId);
     setComments(newComments);
   };
 
-  const handleUpdateComment = (comId, UpdateComment) => {
-    const newComments = comments.map(c => {
-      if (c.id === comId) {
-        return { ...c, body: UpdateComment };
+  const handleUpdateComment = (commentId, newBody) => {
+    const newComments = comments.map(comment => {
+      if (comment.id === commentId) {
+        return { ...comment, body: newBody };
       }
-      return c;
+      return comment;
     });
     setComments(newComments);
   };
