@@ -8,9 +8,9 @@ import {BrowserRouter} from "react-router-dom";
 
 
     ReactDOM.render(
-        <BrowserRouter>
+
             <App state={store} />
-        </BrowserRouter>, document.getElementById('root'));
+    , document.getElementById('root'));
 
 
 
