@@ -3,7 +3,7 @@ import {Button, Card, FormControl, InputGroup} from "react-bootstrap";
 
 const ListHeader = (props) => {
     const [visible, setVisible] = useState(false);
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useState(props.name);
 
 
     const handleShowInput = () => {

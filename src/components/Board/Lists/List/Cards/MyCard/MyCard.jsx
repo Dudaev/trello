@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./MyCards.module.css";
 import {ListGroup, Button} from "react-bootstrap";
-import CardDetailWindow from "../../../../CardDetailWindow/CardDetailWindow";
+import CardDetailWindow from "./CardDetailWindow/CardDetailWindow";
 
 class MyCard extends React.Component {
     state = {
@@ -22,7 +22,8 @@ class MyCard extends React.Component {
     render() {
         const { visible } = this.state
         const name = this.props.name
-        const comment = this.props.comment
+        const comment = this.props.comment.length
+        const nameList = this.props.nameList
         return (
             <div className={s.container}>
                 <Button onClick={this.removeCard} className={s.close} variant="link">X</Button>
@@ -31,7 +32,19 @@ class MyCard extends React.Component {
                     <div className={s.comment}>Com {comment}</div>
                 </ListGroup.Item>
                 {
-                    visible && <CardDetailWindow visible={visible} handleClosingWindow={this.handleClosingWindow}/>
+                    visible && <CardDetailWindow visible={visible}
+                                                 handleClosingWindow={this.handleClosingWindow}
+                                                 cardName={name}
+                                                 nameList={nameList}
+                                                 cardId={this.props.cardId}
+                                                 handleAddDescription={this.props.handleAddDescription}
+                                                 CardDescription={this.props.CardDescription}
+                                                 comments={this.props.comment}
+                                                 dataComments={this.props.dataComments}
+                                                 handleAddComment={this.props.handleAddComment}
+                                                 handleRemoveComment={this.props.handleRemoveComment}
+                                                 handleUpdateComment={this.props.handleUpdateComment}
+                    />
                 }
             </div>
         );

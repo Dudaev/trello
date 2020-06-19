@@ -13,6 +13,10 @@ const Lists = (props) => {
                      addCardItem={props.addCardItem}
                      removeCard={props.removeCard}
                      updateListTitle={props.updateListTitle}
+                     handleAddDescription={props.handleAddDescription}
+                     handleAddComment={props.handleAddComment}
+                     handleRemoveComment={props.handleRemoveComment}
+                     handleUpdateComment={props.handleUpdateComment}
         />
     });
     return (
