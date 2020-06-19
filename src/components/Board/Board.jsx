@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Board.module.css';
 
 import Lists from './Lists/Lists.jsx';
@@ -15,18 +15,13 @@ function Board() {
   ];
   const initialCards =   JSON.parse(localStorage.getItem('cards')) || [];
   const initialComments =   JSON.parse(localStorage.getItem('comments')) || [];
-  const initialAuthor =   JSON.parse(localStorage.getItem('author')) || [];
+  const initialAuthor =   JSON.parse(localStorage.getItem('author')) || '';
 
 
   const [lists, setLists] = useState(initialLists);
   const [cards, setCards] = useState(initialCards);
   const [comments, setComments] = useState(initialComments);
   const [author, setAuthor] = useState(initialAuthor);
-
-  // const addListItem = newItem => {
-  //     localStorage.setItem('lists', JSON.stringify([...lists, newItem]))
-  //     setLists(JSON.parse(localStorage.getItem('lists'))  )
-  // }
 
   const updateListTitle = (listId, newTitle) => {
     const newLists = lists.map(list => {
@@ -35,22 +30,18 @@ function Board() {
       }
       return list;
     });
-    localStorage.setItem('lists', JSON.stringify(newLists));
-    setLists(JSON.parse(localStorage.getItem('lists')));
+    setLists(newLists);
   };
 
   const addCardItem = newItem => {
-    localStorage.setItem('cards', JSON.stringify([...cards, newItem]));
-    setCards(JSON.parse(localStorage.getItem('cards')));
+    setCards([...cards, newItem]);
   };
   const removeCard = cardId => {
     const newCards = cards.filter(({ id }) => id !== cardId);
-    localStorage.setItem('cards', JSON.stringify(newCards));
-    setCards(JSON.parse(localStorage.getItem('cards')));
+    setCards(newCards);
 
     const newComments = comments.filter(({ cardsID }) => cardsID !== cardId);
-    localStorage.setItem('comments', JSON.stringify(newComments));
-    setComments(JSON.parse(localStorage.getItem('comments')));
+    setComments(newComments);
   };
   const handleUpdateCardTitle = (cardId, newTitle) => {
     const newCards = cards.map(c => {
@@ -59,8 +50,7 @@ function Board() {
       }
       return c;
     });
-    localStorage.setItem('cards', JSON.stringify(newCards));
-    setCards(JSON.parse(localStorage.getItem('cards')));
+    setCards(newCards);
   };
 
   const handleAddDescription = (newDescription, cardId) => {
@@ -75,14 +65,12 @@ function Board() {
   };
 
   const handleAddComment = newComment => {
-    localStorage.setItem('comments', JSON.stringify([...comments, newComment]));
-    setComments(JSON.parse(localStorage.getItem('comments')));
+    setComments([...comments, newComment]);
   };
 
   const handleRemoveComment = comId => {
     const newComments = comments.filter(({ id }) => id !== comId);
-    localStorage.setItem('comments', JSON.stringify(newComments));
-    setComments(JSON.parse(localStorage.getItem('comments')));
+    setComments(newComments);
   };
 
   const handleUpdateComment = (comId, UpdateComment) => {
@@ -92,15 +80,19 @@ function Board() {
       }
       return c;
     });
-
-    localStorage.setItem('comments', JSON.stringify(newComments));
-    setComments(JSON.parse(localStorage.getItem('comments')));
+    setComments(newComments);
   };
 
   const handleAddAuthor = newAuthor => {
-    localStorage.setItem('author', JSON.stringify(newAuthor));
-    setAuthor(JSON.parse(localStorage.getItem('author')));
+    setAuthor(newAuthor);
   };
+
+  useEffect(() => {
+    localStorage.setItem('cards', JSON.stringify(cards));
+    localStorage.setItem('comments', JSON.stringify(comments));
+    localStorage.setItem('lists', JSON.stringify(lists));
+    localStorage.setItem('author', JSON.stringify(author));
+    }, [cards, comments, lists, author]);
 
   return (
     <div>
