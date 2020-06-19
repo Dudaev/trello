@@ -10,7 +10,7 @@ function App(props) {
   return (
     <div className="App">
         <Nav/>
-        <Board BoardPage={props.state.BoardPage}/>
+        <Board/>
     </div>
 
   );
