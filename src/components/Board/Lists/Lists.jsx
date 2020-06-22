@@ -4,12 +4,12 @@ import List from "./List/List";
 
 const Lists = (props) => {
 
-    let listsElements =  props.dataLists.map((list) => {
+    let listsElements =  props.lists.map((list) => {
         return <List key={list.id}
                      listId={list.id}
                      name={list.name}
-                     dataCards={props.dataCards}
-                     dataComments={props.dataComments}
+                     dataCards={props.cards}
+                     dataComments={props.comments}
                      handleAddCard={props.handleAddCard}
                      handleRemoveCard={props.handleRemoveCard}
                      handleUpdateListTitle={props.handleUpdateListTitle}
@@ -17,7 +17,7 @@ const Lists = (props) => {
                      handleAddComment={props.handleAddComment}
                      handleRemoveComment={props.handleRemoveComment}
                      handleUpdateComment={props.handleUpdateComment}
-                     author={props.dataAuthor}
+                     author={props.author}
                      handleUpdateCardTitle={props.handleUpdateCardTitle}
         />
     });

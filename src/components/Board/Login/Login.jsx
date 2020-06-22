@@ -9,7 +9,7 @@ const Login = (props) => {
         setVisible(false )
     }
     const setNewAuthor = () => {
-        props.handleAddAuthor(name)
+        props.setAuthor(name)
         setVisible(false )
     }
 
