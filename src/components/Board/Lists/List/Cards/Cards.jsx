@@ -5,7 +5,7 @@ const Cards = (props) => {
 
     const newCards = props.dataCards.filter((card) => card.listsID === props.idList);
     const cardsElements = newCards.map(function (card) {
-        const Comments = props.dataComments.filter((com) => com.cardsID === card.id);
+        const Comments = props.dataComments.filter((com) => com.cardsId === card.id);
             return <MyCard key={card.id}
                            cardId={card.id}
                            name={card.name}

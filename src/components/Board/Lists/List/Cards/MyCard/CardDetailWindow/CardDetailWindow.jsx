@@ -26,8 +26,8 @@ function CardDetailWindow(props) {
     }
     props.handleAddComment({
       id: i,
-      authorID: 0,
-      cardsID: props.cardId,
+      authorId: 0,
+      cardsId: props.cardId,
       body: comment,
     });
     setComment('');
