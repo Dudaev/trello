@@ -3,7 +3,7 @@ import styles from './Board.module.css';
 import Lists from './Lists/Lists.jsx';
 import Login from './Login/Login.jsx';
 
-const initialLists =   JSON.parse(localStorage.getItem('lists')) || [
+const initialLists = JSON.parse(localStorage.getItem('lists')) || [
   { id: 0, name: 'TODO' },
   { id: 1, name: 'In Progress' },
   { id: 2, name: 'Testing' },
@@ -14,7 +14,6 @@ const initialComments = JSON.parse(localStorage.getItem('comments')) || [];
 const initialAuthor = JSON.parse(localStorage.getItem('author')) || '';
 
 function Board() {
-
   const [lists, setLists] = useState(initialLists);
   const [cards, setCards] = useState(initialCards);
   const [comments, setComments] = useState(initialComments);
@@ -79,14 +78,12 @@ function Board() {
     setComments(newComments);
   };
 
-
   useEffect(() => {
     localStorage.setItem('cards', JSON.stringify(cards));
     localStorage.setItem('comments', JSON.stringify(comments));
     localStorage.setItem('lists', JSON.stringify(lists));
     localStorage.setItem('author', JSON.stringify(author));
-    }, [cards, comments, lists, author]
-  );
+  }, [cards, comments, lists, author]);
 
   return (
     <div>

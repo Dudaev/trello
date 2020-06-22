@@ -25,7 +25,7 @@ const CardComposerContainer = props => {
     }
 
     props.handleAddCard({
-      id: id,
+      id,
       authorID: props.author,
       listsID: props.listId,
       name: title,
@@ -54,10 +54,9 @@ const CardComposerContainer = props => {
             </Button>
           </InputGroup.Append>
         </InputGroup>
-        )}
+      )}
     </div>
-  )
-
+  );
 };
 
 export default CardComposerContainer;

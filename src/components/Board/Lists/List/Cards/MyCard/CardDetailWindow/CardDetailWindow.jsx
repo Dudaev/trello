@@ -5,7 +5,6 @@ import Description from './Description/Description.jsx';
 import CardHeader from './CardHeader/CardHeader.jsx';
 
 function CardDetailWindow(props) {
-
   const [comment, setComment] = useState('');
 
   const handleAddComment = () => {
@@ -26,7 +25,7 @@ function CardDetailWindow(props) {
       id++;
     }
     props.handleAddComment({
-      id: id,
+      id,
       authorId: 0,
       cardsId: props.cardId,
       body: comment,
