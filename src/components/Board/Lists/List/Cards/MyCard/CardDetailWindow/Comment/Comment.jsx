@@ -5,13 +5,12 @@ const Comment = (props) => {
     const [updateComment, setUpdateComment] = useState(props.body)
     const [visible, setVisible] = useState(false)
 
-
-    const handleRemoveComment = (comID) => {
-        props.handleRemoveComment(comID)
+    const handleRemoveComment = (idOfRemovedComment) => {
+        props.handleRemoveComment(idOfRemovedComment)
     }
-    const handleUpdateComment = (comID) => {
+    const handleUpdateComment = (idOfUpdatedComment) => {
         setVisible(false)
-        props.handleUpdateComment(comID, updateComment)
+        props.handleUpdateComment(idOfUpdatedComment, updateComment)
     }
 
     return (
@@ -41,8 +40,6 @@ const Comment = (props) => {
                     </InputGroup>
                 </div>
             }
-
-
         </div>
     );
 };

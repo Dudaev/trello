@@ -5,14 +5,15 @@ import Description from './Description/Description.jsx';
 import CardHeader from './CardHeader/CardHeader.jsx';
 
 function CardDetailWindow(props) {
+
   const [comment, setComment] = useState('');
 
   const handleAddComment = () => {
-    let i = 0;
+    let id = 0;
     let result = true;
     while (true) {
-      for (let j = 0; j < props.dataComments.length; j++) {
-        if (i === props.dataComments[j].id) {
+      for (let i = 0; i < props.comments.length; i++) {
+        if (id === props.comments[i].id) {
           result = false;
           break;
         } else {
@@ -22,17 +23,17 @@ function CardDetailWindow(props) {
       if (result === true) {
         break;
       }
-      i++;
+      id++;
     }
     props.handleAddComment({
-      id: i,
+      id: id,
       authorId: 0,
       cardsId: props.cardId,
       body: comment,
     });
     setComment('');
   };
-  const commentsList = props.comments.map(comments => (
+  const commentsList = props.thisCardComments.map(comments => (
     <Comment
       key={comments.id}
       id={comments.id}
@@ -47,12 +48,10 @@ function CardDetailWindow(props) {
     <div>
       <Modal show={props.visible}>
         <Modal.Header>
-          {/* <Modal.Title>{props.cardName}</Modal.Title> */}
           <CardHeader
             title={props.cardName}
             cardId={props.cardId}
             handleUpdateCardTitle={props.handleUpdateCardTitle}
-          />
           />
         </Modal.Header>
 
@@ -70,7 +69,7 @@ function CardDetailWindow(props) {
           <Description
             cardId={props.cardId}
             nameList={props.nameList}
-            CardDescription={props.CardDescription}
+            cardDescription={props.cardDescription}
             handleAddDescription={props.handleAddDescription}
           />
 
@@ -83,6 +82,7 @@ function CardDetailWindow(props) {
               aria-label="With textarea"
             />
           </InputGroup>
+
           <Button onClick={handleAddComment} variant="primary">
             Save
           </Button>

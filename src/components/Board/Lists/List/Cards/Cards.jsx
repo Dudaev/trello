@@ -3,17 +3,17 @@ import MyCard from "./MyCard/MyCard";
 
 const Cards = (props) => {
 
-    const newCards = props.dataCards.filter((card) => card.listsID === props.idList);
+    const newCards = props.cards.filter((card) => card.listsID === props.idList);
     const cardsElements = newCards.map(function (card) {
-        const Comments = props.dataComments.filter((com) => com.cardsId === card.id);
+        const thisCardComments = props.comments.filter((comment) => comment.cardsId === card.id);
             return <MyCard key={card.id}
                            cardId={card.id}
                            name={card.name}
                            author={card.authorID}
-                           CardDescription={card.description}
+                           cardDescription={card.description}
                            nameList={props.nameList}
-                           comment={Comments}
-                           dataComments={props.dataComments}
+                           thisCardComments={thisCardComments}
+                           comments={props.comments}
                            handleRemoveCard={props.handleRemoveCard}
                            handleAddDescription={props.handleAddDescription}
                            handleAddComment={props.handleAddComment}

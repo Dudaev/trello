@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 
 const Description = (props) => {
-    const [description, setDescription] = useState(props.CardDescription)
+    const [description, setDescription] = useState(props.cardDescription)
     const [visible, setVisible] = useState(false)
 
     const handleAddDescription = () => {
@@ -15,7 +15,7 @@ const Description = (props) => {
             {
                 !visible && <div>
 
-                    <div>{props.CardDescription}</div>
+                    <div>{props.cardDescription}</div>
                     <Button onClick={ () => setVisible(true) } variant="link">Edit</Button>
                 </div>
 

@@ -7,12 +7,10 @@ class MyCard extends React.Component {
     state = {
         visible: false
     }
-    handleClosingWindow = (e) => {
-        e.preventDefault()
+    handleClosingWindow = () => {
         this.setState({ visible: false })
     }
-    handleOpenWindow = (e) => {
-        e.preventDefault()
+    handleOpenWindow = () => {
         this.setState({ visible: true })
     }
     removeCard = () => {
@@ -21,7 +19,7 @@ class MyCard extends React.Component {
     render() {
         const { visible } = this.state
         const name = this.props.name
-        const comment = this.props.comment.length
+        const comment = this.props.thisCardComments.length
         const nameList = this.props.nameList
         return (
             <div className={styles.container}>
@@ -38,9 +36,9 @@ class MyCard extends React.Component {
                                                  cardId={this.props.cardId}
                                                  author={this.props.author}
                                                  handleAddDescription={this.props.handleAddDescription}
-                                                 CardDescription={this.props.CardDescription}
-                                                 comments={this.props.comment}
-                                                 dataComments={this.props.dataComments}
+                                                 cardDescription={this.props.cardDescription}
+                                                 thisCardComments={this.props.thisCardComments}
+                                                 comments={this.props.comments}
                                                  handleAddComment={this.props.handleAddComment}
                                                  handleRemoveComment={this.props.handleRemoveComment}
                                                  handleUpdateComment={this.props.handleUpdateComment}

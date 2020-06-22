@@ -7,11 +7,11 @@ const CardComposerContainer = props => {
 
   function handleAddAndHide() {
     setVisible(false);
-    let i = 0;
+    let id = 0;
     let result = true;
     while (true) {
-      for (let j = 0; j < props.dataCards.length; j++) {
-        if (i === props.dataCards[j].id) {
+      for (let i = 0; i < props.cards.length; i++) {
+        if (id === props.cards[i].id) {
           result = false;
           break;
         } else {
@@ -21,13 +21,13 @@ const CardComposerContainer = props => {
       if (result === true) {
         break;
       }
-      i++;
+      id++;
     }
 
     props.handleAddCard({
-      id: i,
+      id: id,
       authorID: props.author,
-      listsID: props.idList,
+      listsID: props.listId,
       name: title,
       description: '',
     });

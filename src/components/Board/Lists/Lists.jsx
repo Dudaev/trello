@@ -8,8 +8,9 @@ const Lists = (props) => {
         return <List key={list.id}
                      listId={list.id}
                      name={list.name}
-                     dataCards={props.cards}
-                     dataComments={props.comments}
+                     cards={props.cards}
+                     comments={props.comments}
+                     author={props.author}
                      handleAddCard={props.handleAddCard}
                      handleRemoveCard={props.handleRemoveCard}
                      handleUpdateListTitle={props.handleUpdateListTitle}
@@ -17,7 +18,6 @@ const Lists = (props) => {
                      handleAddComment={props.handleAddComment}
                      handleRemoveComment={props.handleRemoveComment}
                      handleUpdateComment={props.handleUpdateComment}
-                     author={props.author}
                      handleUpdateCardTitle={props.handleUpdateCardTitle}
         />
     });
