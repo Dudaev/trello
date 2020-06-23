@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const Comment = props => {
   const [updateComment, setUpdateComment] = useState(props.body);
@@ -49,5 +50,11 @@ const Comment = props => {
     </div>
   );
 };
-
+Comment.propTypes = {
+  body: PropTypes.string,
+  handleRemoveComment: PropTypes.func,
+  handleUpdateComment: PropTypes.func,
+  id: PropTypes.number,
+  author: PropTypes.string,
+};
 export default Comment;

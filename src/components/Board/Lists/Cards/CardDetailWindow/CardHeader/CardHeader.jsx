@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup, Modal } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const CardHeader = props => {
   const [visible, setVisible] = useState(false);
@@ -33,5 +34,9 @@ const CardHeader = props => {
     </div>
   );
 };
-
+CardHeader.propTypes = {
+  title: PropTypes.string,
+  cardId: PropTypes.number,
+  handleUpdateCardTitle: PropTypes.func,
+};
 export default CardHeader;

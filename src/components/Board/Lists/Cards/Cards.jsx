@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import styles from './Cards.module.css';
-import CardDetailWindow from './CardDetailWindow/CardDetailWindow';
+import CardDetailWindow from './CardDetailWindow/CardDetailWindow.jsx';
 
 const Cards = props => {
   const [visible, setVisible] = useState(false);
@@ -18,7 +19,7 @@ const Cards = props => {
     props.handleRemoveCard(cardId);
   };
 
-  const newCards = props.cards.filter(card => card.listsID === props.idList);
+  const newCards = props.cards.filter(card => card.listId === props.listId);
   const cardsElements = newCards.map(card => {
     const thisCardComments = props.comments.filter(comment => comment.cardId === card.id);
     return (
@@ -53,5 +54,16 @@ const Cards = props => {
   });
   return <div>{cardsElements}</div>;
 };
-
+Cards.propTypes = {
+  handleRemoveCard: PropTypes.func,
+  cards: PropTypes.array,
+  listId: PropTypes.number,
+  comments: PropTypes.array,
+  nameList: PropTypes.string,
+  handleAddDescription: PropTypes.func,
+  handleAddComment: PropTypes.func,
+  handleRemoveComment: PropTypes.func,
+  handleUpdateComment: PropTypes.func,
+  handleUpdateCardTitle: PropTypes.func,
+};
 export default Cards;

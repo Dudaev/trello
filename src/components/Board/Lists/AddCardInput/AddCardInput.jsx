@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const AddCardInput = props => {
   const [title, setTitle] = useState('');
@@ -8,8 +9,9 @@ const AddCardInput = props => {
   const generateId = () => {
     let id = 0;
     let result = true;
+    // eslint-disable-next-line no-constant-condition
     while (true) {
-      for (let i = 0; i < props.cards.length; i++) {
+      for (let i = 0; i < props.cards.length; i += 1) {
         if (id === props.cards[i].id) {
           result = false;
           break;
@@ -20,7 +22,7 @@ const AddCardInput = props => {
       if (result === true) {
         break;
       }
-      id++;
+      id += 1;
     }
     return id;
   };
@@ -30,8 +32,8 @@ const AddCardInput = props => {
 
     props.handleAddCard({
       id: generateId(),
-      authorID: props.author,
-      listsID: props.listId,
+      authorId: props.author,
+      listId: props.listId,
       name: title,
       description: '',
     });
@@ -61,6 +63,13 @@ const AddCardInput = props => {
       )}
     </div>
   );
+};
+
+AddCardInput.propTypes = {
+  cards: PropTypes.array,
+  author: PropTypes.string,
+  listId: PropTypes.number,
+  handleAddCard: PropTypes.func,
 };
 
 export default AddCardInput;

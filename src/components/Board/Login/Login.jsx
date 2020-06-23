@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Modal } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const Login = props => {
   const [visible, setVisible] = useState(true);
@@ -39,8 +40,8 @@ const Login = props => {
   );
 };
 
-// Login.propTypes = {
-//   text: React.PropTypes.string.isRequired,
-// }
+Login.propTypes = {
+  setAuthor: PropTypes.func,
+};
 
 export default Login;

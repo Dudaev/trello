@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import ListHeader from './ListHeader/ListHeader';
-import Cards from './Cards/Cards';
-import AddCardInput from './AddCardInput/AddCardInput';
+import PropTypes from 'prop-types';
+import ListHeader from './ListHeader/ListHeader.jsx';
+import Cards from './Cards/Cards.jsx';
+import AddCardInput from './AddCardInput/AddCardInput.jsx';
 
 const Lists = props => {
   const listsElements = props.lists.map(list => (
@@ -12,7 +13,7 @@ const Lists = props => {
         <Cards
           cards={props.cards}
           comments={props.comments}
-          idList={list.id}
+          listId={list.id}
           handleRemoveCard={props.handleRemoveCard}
           nameList={list.name}
           handleAddDescription={props.handleAddDescription}
@@ -26,6 +27,21 @@ const Lists = props => {
     </div>
   ));
   return <>{listsElements}</>;
+};
+
+Lists.propTypes = {
+  handleUpdateListName: PropTypes.func,
+  cards: PropTypes.array,
+  comments: PropTypes.array,
+  handleRemoveCard: PropTypes.func,
+  handleAddComment: PropTypes.func,
+  handleUpdateComment: PropTypes.func,
+  handleUpdateCardTitle: PropTypes.func,
+  handleAddCard: PropTypes.func,
+  author: PropTypes.string,
+  handleAddDescription: PropTypes.func,
+  handleRemoveComment: PropTypes.func,
+  lists: PropTypes.array,
 };
 
 export default Lists;

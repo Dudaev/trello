@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup, Modal } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import Comment from './Comment/Comment.jsx';
 import Description from './Description/Description.jsx';
 import CardHeader from './CardHeader/CardHeader.jsx';
@@ -10,8 +11,9 @@ function CardDetailWindow(props) {
   const generateId = () => {
     let id = 0;
     let result = true;
+    // eslint-disable-next-line no-constant-condition
     while (true) {
-      for (let i = 0; i < props.comments.length; i++) {
+      for (let i = 0; i < props.comments.length; i += 1) {
         if (id === props.comments[i].id) {
           result = false;
           break;
@@ -22,15 +24,14 @@ function CardDetailWindow(props) {
       if (result === true) {
         break;
       }
-      id++;
+      id += 1;
     }
     return id;
   };
 
   const handleAddComment = () => {
-
     props.handleAddComment({
-      id : generateId(),
+      id: generateId(),
       authorId: 0,
       cardId: props.cardId,
       body: comment,
@@ -104,5 +105,22 @@ function CardDetailWindow(props) {
     </div>
   );
 }
+
+CardDetailWindow.propTypes = {
+  comments: PropTypes.array,
+  handleAddComment: PropTypes.func,
+  cardId: PropTypes.number,
+  thisCardComments: PropTypes.array,
+  author: PropTypes.string,
+  visible: PropTypes.bool,
+  cardName: PropTypes.string,
+  nameList: PropTypes.string,
+  cardDescription: PropTypes.string,
+  handleClosingWindow: PropTypes.func,
+  handleAddDescription: PropTypes.func,
+  handleRemoveComment: PropTypes.func,
+  handleUpdateComment: PropTypes.func,
+  handleUpdateCardTitle: PropTypes.func,
+};
 
 export default CardDetailWindow;

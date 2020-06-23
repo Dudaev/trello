@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const Description = props => {
   const [description, setDescription] = useState(props.cardDescription);
@@ -38,5 +39,9 @@ const Description = props => {
     </div>
   );
 };
-
+Description.propTypes = {
+  cardDescription: PropTypes.string,
+  cardId: PropTypes.number,
+  handleAddDescription: PropTypes.func,
+};
 export default Description;

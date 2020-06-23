@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Card, FormControl, InputGroup } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 const ListHeader = props => {
   const [visible, setVisible] = useState(false);
@@ -37,6 +38,11 @@ const ListHeader = props => {
       )}
     </div>
   );
+};
+ListHeader.propTypes = {
+  name: PropTypes.string,
+  handleUpdateListName: PropTypes.func,
+  listId: PropTypes.number,
 };
 
 export default ListHeader;
