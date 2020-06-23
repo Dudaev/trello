@@ -3,9 +3,9 @@ import { Button, Col, Form, Modal } from 'react-bootstrap';
 
 const Login = props => {
   const [visible, setVisible] = useState(true);
-  const [name, setName] = useState(props.author);
+  const [name, setName] = useState('');
 
-  const handleClosingWindow = () => {
+  const handleClose = () => {
     setVisible(false);
   };
   const setNewAuthor = () => {
@@ -27,7 +27,7 @@ const Login = props => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleClosingWindow} variant="secondary">
+          <Button onClick={handleClose} variant="secondary">
             Close
           </Button>
           <Button onClick={setNewAuthor} variant="primary">
@@ -38,5 +38,9 @@ const Login = props => {
     </div>
   );
 };
+
+// Login.propTypes = {
+//   text: React.PropTypes.string.isRequired,
+// }
 
 export default Login;

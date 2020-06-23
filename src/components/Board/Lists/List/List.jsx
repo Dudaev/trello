@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import CardComposerContainer from './CardComposerContainer/CardComposerContainer';
+import AddCardInput from './AddCardInput/AddCardInput';
 import ListHeader from './ListHeader/ListHeader';
 import Cards from './Cards/Cards';
 
@@ -8,7 +8,7 @@ function List(props) {
   return (
     <div>
       <Card style={{ width: '18rem' }}>
-        <ListHeader name={props.name} handleUpdateListName={props.handleUpdateListName} idList={props.listId} />
+        <ListHeader name={props.name} handleUpdateListName={props.handleUpdateListName} listId={props.listId} />
         <Cards
           cards={props.cards}
           comments={props.comments}
@@ -21,7 +21,7 @@ function List(props) {
           handleUpdateComment={props.handleUpdateComment}
           handleUpdateCardTitle={props.handleUpdateCardTitle}
         />
-        <CardComposerContainer
+        <AddCardInput
           handleAddCard={props.handleAddCard}
           listId={props.listId}
           cards={props.cards}

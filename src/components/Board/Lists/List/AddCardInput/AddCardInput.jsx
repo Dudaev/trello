@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 
-const CardComposerContainer = props => {
+const AddCardInput = props => {
   const [title, setTitle] = useState('');
   const [visible, setVisible] = useState(false);
 
-  function handleAddAndHide() {
-    setVisible(false);
+  const generateId = () => {
     let id = 0;
     let result = true;
     while (true) {
@@ -23,9 +22,14 @@ const CardComposerContainer = props => {
       }
       id++;
     }
+    return id;
+  };
+
+  function handleAddAndHide() {
+    setVisible(false);
 
     props.handleAddCard({
-      id,
+      id: generateId(),
       authorID: props.author,
       listsID: props.listId,
       name: title,
@@ -49,7 +53,7 @@ const CardComposerContainer = props => {
             onChange={e => setTitle(e.target.value)}
           />
           <InputGroup.Append>
-            <Button onClick={() => handleAddAndHide()} variant="outline-secondary">
+            <Button onClick={handleAddAndHide} variant="outline-secondary">
               Add card
             </Button>
           </InputGroup.Append>
@@ -59,4 +63,4 @@ const CardComposerContainer = props => {
   );
 };
 
-export default CardComposerContainer;
+export default AddCardInput;

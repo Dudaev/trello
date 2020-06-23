@@ -33,11 +33,11 @@ function Board() {
     setCards([...cards, addedCard]);
   };
 
-  const handleRemoveCard = idOfRemovedCard => {
-    const newCards = cards.filter(({ id }) => id !== idOfRemovedCard);
+  const handleRemoveCard = cardId => {
+    const newCards = cards.filter(({ id }) => id !== cardId);
     setCards(newCards);
 
-    const newComments = comments.filter(({ cardId }) => cardId !== idOfRemovedCard);
+    const newComments = comments.filter(comment => comment.cardId !== cardId);
     setComments(newComments);
   };
 
@@ -105,7 +105,7 @@ function Board() {
           handleUpdateCardTitle={handleUpdateCardTitle}
         />
       </div>
-      {initialAuthor === '' && <Login setAuthor={setAuthor} author={author} />}
+      {initialAuthor === '' && <Login setAuthor={setAuthor} />}
     </div>
   );
 }

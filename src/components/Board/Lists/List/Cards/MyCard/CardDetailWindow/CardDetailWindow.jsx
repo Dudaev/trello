@@ -7,7 +7,7 @@ import CardHeader from './CardHeader/CardHeader.jsx';
 function CardDetailWindow(props) {
   const [comment, setComment] = useState('');
 
-  const handleAddComment = () => {
+  const generateId = () => {
     let id = 0;
     let result = true;
     while (true) {
@@ -24,8 +24,13 @@ function CardDetailWindow(props) {
       }
       id++;
     }
+    return id;
+  };
+
+  const handleAddComment = () => {
+
     props.handleAddComment({
-      id,
+      id : generateId(),
       authorId: 0,
       cardId: props.cardId,
       body: comment,

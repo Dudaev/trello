@@ -1,9 +1,10 @@
 import React from 'react';
-import List from "./List/List";
+import List from './List/List';
 
 const Lists = props => {
-
-    const listsElements =  props.lists.map((list) => <List key={list.id}
+  const listsElements = props.lists.map(list => (
+    <List
+      key={list.id}
       listId={list.id}
       name={list.name}
       cards={props.cards}
@@ -18,7 +19,7 @@ const Lists = props => {
       handleUpdateComment={props.handleUpdateComment}
       handleUpdateCardTitle={props.handleUpdateCardTitle}
     />
-  );
+  ));
   return <>{listsElements}</>;
 };
 
