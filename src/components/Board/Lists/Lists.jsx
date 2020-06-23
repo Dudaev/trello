@@ -1,24 +1,29 @@
 import React from 'react';
-import List from './List/List';
+import { Card } from 'react-bootstrap';
+import ListHeader from './ListHeader/ListHeader';
+import Cards from './Cards/Cards';
+import AddCardInput from './AddCardInput/AddCardInput';
 
 const Lists = props => {
   const listsElements = props.lists.map(list => (
-    <List
-      key={list.id}
-      listId={list.id}
-      name={list.name}
-      cards={props.cards}
-      comments={props.comments}
-      author={props.author}
-      handleAddCard={props.handleAddCard}
-      handleRemoveCard={props.handleRemoveCard}
-      handleUpdateListName={props.handleUpdateListName}
-      handleAddDescription={props.handleAddDescription}
-      handleAddComment={props.handleAddComment}
-      handleRemoveComment={props.handleRemoveComment}
-      handleUpdateComment={props.handleUpdateComment}
-      handleUpdateCardTitle={props.handleUpdateCardTitle}
-    />
+    <div key={list.id}>
+      <Card style={{ width: '18rem' }}>
+        <ListHeader name={list.name} handleUpdateListName={props.handleUpdateListName} listId={list.id} />
+        <Cards
+          cards={props.cards}
+          comments={props.comments}
+          idList={list.id}
+          handleRemoveCard={props.handleRemoveCard}
+          nameList={list.name}
+          handleAddDescription={props.handleAddDescription}
+          handleAddComment={props.handleAddComment}
+          handleRemoveComment={props.handleRemoveComment}
+          handleUpdateComment={props.handleUpdateComment}
+          handleUpdateCardTitle={props.handleUpdateCardTitle}
+        />
+        <AddCardInput handleAddCard={props.handleAddCard} listId={list.id} cards={props.cards} author={props.author} />
+      </Card>
+    </div>
   ));
   return <>{listsElements}</>;
 };

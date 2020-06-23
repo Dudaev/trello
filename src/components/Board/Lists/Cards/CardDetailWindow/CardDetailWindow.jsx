@@ -37,6 +37,7 @@ function CardDetailWindow(props) {
     });
     setComment('');
   };
+  // debugger
   const commentsList = props.thisCardComments.map(comments => (
     <Comment
       key={comments.id}
