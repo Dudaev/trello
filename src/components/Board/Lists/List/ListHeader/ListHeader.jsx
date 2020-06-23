@@ -11,7 +11,7 @@ const ListHeader = props => {
 
   const handleHideInput = () => {
     setVisible(false);
-    props.handleUpdateListTitle(props.idList, title);
+    props.handleUpdateListName(props.idList, title);
   };
   return (
     <div>

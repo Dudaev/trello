@@ -11,7 +11,7 @@ const Lists = props => {
       author={props.author}
       handleAddCard={props.handleAddCard}
       handleRemoveCard={props.handleRemoveCard}
-      handleUpdateListTitle={props.handleUpdateListTitle}
+      handleUpdateListName={props.handleUpdateListName}
       handleAddDescription={props.handleAddDescription}
       handleAddComment={props.handleAddComment}
       handleRemoveComment={props.handleRemoveComment}

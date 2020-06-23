@@ -21,6 +21,7 @@ class MyCard extends React.Component {
   };
 
   render() {
+    // debugger
     const { visible } = this.state;
     const { name } = this.props;
     const comment = this.props.thisCardComments.length;

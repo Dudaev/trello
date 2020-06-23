@@ -4,7 +4,7 @@ import MyCard from './MyCard/MyCard';
 const Cards = props => {
   const newCards = props.cards.filter(card => card.listsID === props.idList);
   const cardsElements = newCards.map(card => {
-    const thisCardComments = props.comments.filter(comment => comment.cardsId === card.id);
+    const thisCardComments = props.comments.filter(comment => comment.cardId === card.id);
     return (
       <MyCard
         key={card.id}

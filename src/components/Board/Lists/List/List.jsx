@@ -8,7 +8,7 @@ function List(props) {
   return (
     <div>
       <Card style={{ width: '18rem' }}>
-        <ListHeader name={props.name} handleUpdateListTitle={props.handleUpdateListTitle} idList={props.listId} />
+        <ListHeader name={props.name} handleUpdateListName={props.handleUpdateListName} idList={props.listId} />
         <Cards
           cards={props.cards}
           comments={props.comments}

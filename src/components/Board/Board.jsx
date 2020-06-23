@@ -19,10 +19,10 @@ function Board() {
   const [comments, setComments] = useState(initialComments);
   const [author, setAuthor] = useState(initialAuthor);
 
-  const handleUpdateListTitle = (idOfUpdatedList, updatedTitle) => {
+  const handleUpdateListName = (listId, updatedName) => {
     const newLists = lists.map(list => {
-      if (list.id === idOfUpdatedList) {
-        return { ...list, name: updatedTitle };
+      if (list.id === listId) {
+        return { ...list, name: updatedName };
       }
       return list;
     });
@@ -32,16 +32,18 @@ function Board() {
   const handleAddCard = addedCard => {
     setCards([...cards, addedCard]);
   };
+
   const handleRemoveCard = idOfRemovedCard => {
     const newCards = cards.filter(({ id }) => id !== idOfRemovedCard);
     setCards(newCards);
 
-    const newComments = comments.filter(({ cardsId }) => cardsId !== idOfRemovedCard);
+    const newComments = comments.filter(({ cardId }) => cardId !== idOfRemovedCard);
     setComments(newComments);
   };
-  const handleUpdateCardTitle = (idOfUpdatedCard, updatedTitle) => {
+
+  const handleUpdateCardTitle = (cardId, updatedTitle) => {
     const newCards = cards.map(card => {
-      if (card.id === idOfUpdatedCard) {
+      if (card.id === cardId) {
         return { ...card, name: updatedTitle };
       }
       return card;
@@ -49,9 +51,9 @@ function Board() {
     setCards(newCards);
   };
 
-  const handleAddDescription = (addedDescription, idOfAddedCard) => {
+  const handleAddDescription = (addedDescription, cardId) => {
     const newCards = cards.map(card => {
-      if (card.id === idOfAddedCard) {
+      if (card.id === cardId) {
         return { ...card, description: addedDescription };
       }
       return card;
@@ -63,14 +65,14 @@ function Board() {
     setComments([...comments, addedComment]);
   };
 
-  const handleRemoveComment = idOfRemovedComment => {
-    const newComments = comments.filter(({ id }) => id !== idOfRemovedComment);
+  const handleRemoveComment = commentId => {
+    const newComments = comments.filter(({ id }) => id !== commentId);
     setComments(newComments);
   };
 
-  const handleUpdateComment = (idOfUpdatedComment, updatedBody) => {
+  const handleUpdateComment = (commentId, updatedBody) => {
     const newComments = comments.map(comment => {
-      if (comment.id === idOfUpdatedComment) {
+      if (comment.id === commentId) {
         return { ...comment, body: updatedBody };
       }
       return comment;
@@ -95,7 +97,7 @@ function Board() {
           author={author}
           handleAddCard={handleAddCard}
           handleRemoveCard={handleRemoveCard}
-          handleUpdateListTitle={handleUpdateListTitle}
+          handleUpdateListName={handleUpdateListName}
           handleAddDescription={handleAddDescription}
           handleAddComment={handleAddComment}
           handleRemoveComment={handleRemoveComment}
