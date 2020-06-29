@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import styles from './Board.module.css';
 import Lists from './Lists/Lists.jsx';
 import Login from './Login/Login.jsx';
-import {connect} from "react-redux";
-import {updateAuthor, updateCards, updateComments, updateLists} from "../../redux/actions";
+import { updateAuthor, updateCards, updateComments, updateLists } from '../../redux/actions';
 
 function Board(state) {
-
   const handleUpdateListName = (listId, updatedName) => {
     const newLists = state.listsReducer.map(list => {
       if (list.id === listId) {
@@ -97,17 +96,13 @@ function Board(state) {
   );
 }
 
-
-const mapStateToProps = state => {
-  return state
-}
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = {
   updateLists,
   updateCards,
   updateComments,
-  updateAuthor
-}
+  updateAuthor,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
-
