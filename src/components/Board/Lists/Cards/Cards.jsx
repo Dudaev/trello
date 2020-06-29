@@ -5,15 +5,10 @@ import styles from './Cards.module.css';
 import CardDetailWindow from './CardDetailWindow/CardDetailWindow.jsx';
 
 const Cards = props => {
-  const [visible, setVisible] = useState(false);
 
-  const handleClosingWindow = () => {
-    setVisible(false);
-  };
-
-  const handleOpenWindow = () => {
-    setVisible(true);
-  };
+  const handleUpdateShowCardDetail = (cardId) => {
+    props.handleUpdateShowCardDetail(cardId)
+  }
 
   const removeCard = cardId => {
     props.handleRemoveCard(cardId);
@@ -22,19 +17,20 @@ const Cards = props => {
   const newCards = props.cards.filter(card => card.listId === props.listId);
   const cardsElements = newCards.map(card => {
     const thisCardComments = props.comments.filter(comment => comment.cardId === card.id);
+    console.log('card.id = ' + card.id)
     return (
       <div key={card.id} className={styles.container}>
         <Button onClick={() => removeCard(card.id)} className={styles.close} variant="link">
           X
         </Button>
-        <ListGroup.Item onClick={handleOpenWindow}>
+        <ListGroup.Item onClick={() => handleUpdateShowCardDetail(card.id)}>
           <div>{card.name}</div>
           <div className={styles.comment}>Com {thisCardComments.length}</div>
         </ListGroup.Item>
-        {visible && (
+        {card.showCardDetail && (
           <CardDetailWindow
-            visible={visible}
-            handleClosingWindow={handleClosingWindow}
+            visible={card.showCardDetail}
+            handleUpdateShowCardDetail={handleUpdateShowCardDetail}
             cardName={card.name}
             nameList={props.nameList}
             cardId={card.id}
@@ -52,8 +48,8 @@ const Cards = props => {
       </div>
     );
   });
-  // debugger;
   return <div>{cardsElements}</div>;
+
 };
 Cards.propTypes = {
   handleRemoveCard: PropTypes.func,
@@ -66,5 +62,6 @@ Cards.propTypes = {
   handleRemoveComment: PropTypes.func,
   handleUpdateComment: PropTypes.func,
   handleUpdateCardTitle: PropTypes.func,
+  handleUpdateShowCardDetail: PropTypes.func,
 };
 export default Cards;

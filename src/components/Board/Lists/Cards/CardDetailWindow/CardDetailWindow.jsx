@@ -97,7 +97,7 @@ function CardDetailWindow(props) {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button onClick={props.handleClosingWindow} variant="secondary">
+          <Button onClick={() => props.handleUpdateShowCardDetail(props.cardId)} variant="secondary">
             Close
           </Button>
         </Modal.Footer>
@@ -121,6 +121,7 @@ CardDetailWindow.propTypes = {
   handleRemoveComment: PropTypes.func,
   handleUpdateComment: PropTypes.func,
   handleUpdateCardTitle: PropTypes.func,
+  handleUpdateShowCardDetail: PropTypes.func,
 };
 
 export default CardDetailWindow;

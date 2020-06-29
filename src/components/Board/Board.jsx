@@ -38,6 +38,16 @@ function Board(state) {
     state.updateCards(newCards);
   };
 
+  const handleUpdateShowCardDetail = (cardId) => {
+    const newCards = state.cardsReducer.map(card => {
+      if (card.id === cardId) {
+        return { ...card, showCardDetail: !card.showCardDetail };
+      }
+      return card;
+    });
+    state.updateCards(newCards);
+  };
+
   const handleAddDescription = (addedDescription, cardId) => {
     const newCards = state.cardsReducer.map(card => {
       if (card.id === cardId) {
@@ -89,6 +99,7 @@ function Board(state) {
           handleRemoveComment={handleRemoveComment}
           handleUpdateComment={handleUpdateComment}
           handleUpdateCardTitle={handleUpdateCardTitle}
+          handleUpdateShowCardDetail={handleUpdateShowCardDetail}
         />
       </div>
       {state.authorReducer === '' && <Login setAuthor={state.updateAuthor} />}

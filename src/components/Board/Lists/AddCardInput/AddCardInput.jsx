@@ -36,6 +36,7 @@ const AddCardInput = props => {
       listId: props.listId,
       name: title,
       description: '',
+      showCardDetail: false,
     });
     setTitle('');
   }

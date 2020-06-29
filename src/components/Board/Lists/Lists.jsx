@@ -21,6 +21,7 @@ const Lists = props => {
           handleRemoveComment={props.handleRemoveComment}
           handleUpdateComment={props.handleUpdateComment}
           handleUpdateCardTitle={props.handleUpdateCardTitle}
+          handleUpdateShowCardDetail={props.handleUpdateShowCardDetail}
         />
         <AddCardInput handleAddCard={props.handleAddCard} listId={list.id} cards={props.cards} author={props.author} />
       </Card>
