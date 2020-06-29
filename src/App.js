@@ -4,15 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from "./components/Nav/Nav";
 import Board from "./components/Board/Board";
 
-
-
-function App(props) {
+function App() {
   return (
     <div className="App">
         <Nav/>
         <Board/>
     </div>
-
   );
 }
 

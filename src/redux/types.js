@@ -1,0 +1,4 @@
+export const UPDATE_LISTS = 'UPDATE_LISTS'
+export const UPDATE_CARDS = 'UPDATE_CARDS'
+export const UPDATE_COMMENTS = 'UPDATE_COMMENTS'
+export const UPDATE_AUTHOR = 'UPDATE_AUTHOR'

@@ -38,7 +38,7 @@ const Cards = props => {
             cardName={card.name}
             nameList={props.nameList}
             cardId={card.id}
-            author={card.authorID}
+            author={card.authorId}
             handleAddDescription={props.handleAddDescription}
             cardDescription={card.description}
             thisCardComments={thisCardComments}
@@ -52,6 +52,7 @@ const Cards = props => {
       </div>
     );
   });
+  // debugger;
   return <div>{cardsElements}</div>;
 };
 Cards.propTypes = {
