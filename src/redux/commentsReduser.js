@@ -1,4 +1,4 @@
-import {ADD_COMMENT, REMOVE_CARD_COMMENTS, REMOVE_COMMENT} from './types';
+import { ADD_COMMENT, REMOVE_CARD_COMMENTS, REMOVE_COMMENT, UPDATE_COMMENT } from './types';
 
 const commentsReducer = (state = JSON.parse(localStorage.getItem('comments')) || [], action) => {
   switch (action.type) {
@@ -8,6 +8,13 @@ const commentsReducer = (state = JSON.parse(localStorage.getItem('comments')) ||
       return [...state, action.addedComment];
     case REMOVE_COMMENT:
       return state.filter(({ id }) => id !== action.commentId);
+    case UPDATE_COMMENT:
+      return state.map(comment => {
+        if (comment.id === action.commentId) {
+          return { ...comment, body: action.updatedBody };
+        }
+        return comment;
+      });
     default:
       return state;
   }

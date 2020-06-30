@@ -7,7 +7,10 @@ import {
   REMOVE_COMMENT,
   SHOW_CARD_DETAIL,
   UPDATE_CARD_TITLE,
-  ADD_DESCRIPTION, ADD_COMMENT, REMOVE_CARD_COMMENTS, UPDATE_COMMENT,
+  ADD_DESCRIPTION,
+  ADD_COMMENT,
+  REMOVE_CARD_COMMENTS,
+  UPDATE_COMMENT,
 } from './types';
 
 export const updateAuthor = name => ({
@@ -58,7 +61,7 @@ export const handleAddComment = addedComment => ({
   addedComment,
 });
 
-export const handleRemoveComment = (commentId) => ({
+export const handleRemoveComment = commentId => ({
   type: REMOVE_COMMENT,
   commentId,
 });

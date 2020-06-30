@@ -1,4 +1,4 @@
-import {ADD_CARD, ADD_DESCRIPTION, REMOVE_CARD, SHOW_CARD_DETAIL, UPDATE_CARD_TITLE} from './types';
+import { ADD_CARD, ADD_DESCRIPTION, REMOVE_CARD, SHOW_CARD_DETAIL, UPDATE_CARD_TITLE } from './types';
 
 const cardsReducer = (state = JSON.parse(localStorage.getItem('cards')) || [], action) => {
   switch (action.type) {

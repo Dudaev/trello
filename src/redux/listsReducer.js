@@ -1,4 +1,4 @@
-import {UPDATE_LIST_NAME} from './types';
+import { UPDATE_LIST_NAME } from './types';
 
 const initialState = [
   { id: 0, name: 'TODO' },

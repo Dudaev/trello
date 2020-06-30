@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import styles from './Board.module.css';
 import Lists from './Lists/Lists.jsx';
 import Login from './Login/Login.jsx';
@@ -13,12 +14,11 @@ import {
   handleUpdateCardTitle,
   handleUpdateComment,
   handleUpdateListName,
-  handleUpdateShowCardDetail, updateAuthor,
+  handleUpdateShowCardDetail,
+  updateAuthor,
 } from '../../redux/actions';
-import PropTypes from 'prop-types';
 
 function Board(props) {
-
   const handleRemoveCardWithComments = cardId => {
     props.handleRemoveCard(cardId);
     props.handleRemoveCardComments(cardId);
@@ -49,7 +49,7 @@ function Board(props) {
           handleUpdateComment={(commentId, updatedBody) => props.handleUpdateComment(commentId, updatedBody)}
         />
       </div>
-      {props.state.authorReducer === '' && <Login setAuthor={(name) => props.updateAuthor(name)} />}
+      {props.state.authorReducer === '' && <Login setAuthor={name => props.updateAuthor(name)} />}
     </div>
   );
 }
@@ -59,7 +59,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateAuthor: (name) => {
+  updateAuthor: name => {
     dispatch(updateAuthor(name));
   },
   handleUpdateListName: (listId, updatedName) => {
