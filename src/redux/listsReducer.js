@@ -1,4 +1,4 @@
-import { UPDATE_LISTS } from './types';
+import {UPDATE_LIST_NAME} from './types';
 
 const initialState = [
   { id: 0, name: 'TODO' },
@@ -9,8 +9,13 @@ const initialState = [
 
 const listsReducer = (state = JSON.parse(localStorage.getItem('lists')) || initialState, action) => {
   switch (action.type) {
-    case UPDATE_LISTS:
-      return action.payload;
+    case UPDATE_LIST_NAME:
+      return state.map(list => {
+        if (list.id === action.listId) {
+          return { ...list, name: action.updatedName };
+        }
+        return list;
+      });
     default:
       return state;
   }

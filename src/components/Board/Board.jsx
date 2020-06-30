@@ -3,117 +3,110 @@ import { connect } from 'react-redux';
 import styles from './Board.module.css';
 import Lists from './Lists/Lists.jsx';
 import Login from './Login/Login.jsx';
-import { updateAuthor, updateCards, updateComments, updateLists } from '../../redux/actions';
+import {
+  handleAddCard,
+  handleAddComment,
+  handleAddDescription,
+  handleRemoveCard,
+  handleRemoveCardComments,
+  handleRemoveComment,
+  handleUpdateCardTitle,
+  handleUpdateComment,
+  handleUpdateListName,
+  handleUpdateShowCardDetail, updateAuthor,
+} from '../../redux/actions';
+import PropTypes from 'prop-types';
 
-function Board(state) {
-  const handleUpdateListName = (listId, updatedName) => {
-    const newLists = state.listsReducer.map(list => {
-      if (list.id === listId) {
-        return { ...list, name: updatedName };
-      }
-      return list;
-    });
-    state.updateLists(newLists);
-  };
+function Board(props) {
 
-  const handleAddCard = addedCard => {
-    state.updateCards([...state.cardsReducer, addedCard]);
-  };
-
-  const handleRemoveCard = cardId => {
-    const newCards = state.cardsReducer.filter(({ id }) => id !== cardId);
-    state.updateCards(newCards);
-
-    const newComments = state.commentsReducer.filter(comment => comment.cardId !== cardId);
-    state.updateComments(newComments);
-  };
-
-  const handleUpdateCardTitle = (cardId, updatedTitle) => {
-    const newCards = state.cardsReducer.map(card => {
-      if (card.id === cardId) {
-        return { ...card, name: updatedTitle };
-      }
-      return card;
-    });
-    state.updateCards(newCards);
-  };
-
-  const handleUpdateShowCardDetail = (cardId) => {
-    const newCards = state.cardsReducer.map(card => {
-      if (card.id === cardId) {
-        return { ...card, showCardDetail: !card.showCardDetail };
-      }
-      return card;
-    });
-    state.updateCards(newCards);
-  };
-
-  const handleAddDescription = (addedDescription, cardId) => {
-    const newCards = state.cardsReducer.map(card => {
-      if (card.id === cardId) {
-        return { ...card, description: addedDescription };
-      }
-      return card;
-    });
-    state.updateCards(newCards);
-  };
-
-  const handleAddComment = addedComment => {
-    state.updateComments([...state.commentsReducer, addedComment]);
-  };
-
-  const handleRemoveComment = commentId => {
-    const newComments = state.commentsReducer.filter(({ id }) => id !== commentId);
-    state.updateComments(newComments);
-  };
-
-  const handleUpdateComment = (commentId, updatedBody) => {
-    const newComments = state.commentsReducer.map(comment => {
-      if (comment.id === commentId) {
-        return { ...comment, body: updatedBody };
-      }
-      return comment;
-    });
-    state.updateComments(newComments);
+  const handleRemoveCardWithComments = cardId => {
+    props.handleRemoveCard(cardId);
+    props.handleRemoveCardComments(cardId);
   };
 
   useEffect(() => {
-    localStorage.setItem('cards', JSON.stringify(state.cardsReducer));
-    localStorage.setItem('comments', JSON.stringify(state.commentsReducer));
-    localStorage.setItem('lists', JSON.stringify(state.listsReducer));
-    localStorage.setItem('author', JSON.stringify(state.authorReducer));
-  }, [state.cardsReducer, state.commentsReducer, state.listsReducer, state.authorReducer]);
+    localStorage.setItem('cards', JSON.stringify(props.state.cardsReducer));
+    localStorage.setItem('comments', JSON.stringify(props.state.commentsReducer));
+    localStorage.setItem('lists', JSON.stringify(props.state.listsReducer));
+    localStorage.setItem('author', JSON.stringify(props.state.authorReducer));
+  }, [props.state.cardsReducer, props.state.commentsReducer, props.state.listsReducer, props.state.authorReducer]);
   return (
     <div>
       <div className={styles.container}>
         <Lists
-          lists={state.listsReducer}
-          cards={state.cardsReducer}
-          comments={state.commentsReducer}
-          author={state.authorReducer}
-          handleAddCard={handleAddCard}
-          handleRemoveCard={handleRemoveCard}
-          handleUpdateListName={handleUpdateListName}
-          handleAddDescription={handleAddDescription}
-          handleAddComment={handleAddComment}
-          handleRemoveComment={handleRemoveComment}
-          handleUpdateComment={handleUpdateComment}
-          handleUpdateCardTitle={handleUpdateCardTitle}
-          handleUpdateShowCardDetail={handleUpdateShowCardDetail}
+          lists={props.state.listsReducer}
+          cards={props.state.cardsReducer}
+          comments={props.state.commentsReducer}
+          author={props.state.authorReducer}
+          handleUpdateListName={(listId, updatedName) => props.handleUpdateListName(listId, updatedName)}
+          handleAddCard={addedCard => props.handleAddCard(addedCard)}
+          handleRemoveCard={handleRemoveCardWithComments}
+          handleUpdateCardTitle={(cardId, updatedTitle) => props.handleUpdateCardTitle(cardId, updatedTitle)}
+          handleUpdateShowCardDetail={cardId => props.handleUpdateShowCardDetail(cardId)}
+          handleAddDescription={(addedDescription, cardId) => props.handleAddDescription(addedDescription, cardId)}
+          handleAddComment={addedComment => props.handleAddComment(addedComment)}
+          handleRemoveComment={commentId => props.handleRemoveComment(commentId)}
+          handleUpdateComment={(commentId, updatedBody) => props.handleUpdateComment(commentId, updatedBody)}
         />
       </div>
-      {state.authorReducer === '' && <Login setAuthor={state.updateAuthor} />}
+      {props.state.authorReducer === '' && <Login setAuthor={(name) => props.updateAuthor(name)} />}
     </div>
   );
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => ({
+  state,
+});
 
-const mapDispatchToProps = {
-  updateLists,
-  updateCards,
-  updateComments,
-  updateAuthor,
+const mapDispatchToProps = dispatch => ({
+  updateAuthor: (name) => {
+    dispatch(updateAuthor(name));
+  },
+  handleUpdateListName: (listId, updatedName) => {
+    dispatch(handleUpdateListName(listId, updatedName));
+  },
+  handleAddCard: addedCard => {
+    dispatch(handleAddCard(addedCard));
+  },
+  handleRemoveCard: cardId => {
+    dispatch(handleRemoveCard(cardId));
+  },
+  handleRemoveCardComments: cardId => {
+    dispatch(handleRemoveCardComments(cardId));
+  },
+  handleUpdateShowCardDetail: cardId => {
+    dispatch(handleUpdateShowCardDetail(cardId));
+  },
+  handleUpdateCardTitle: (cardId, updatedTitle) => {
+    dispatch(handleUpdateCardTitle(cardId, updatedTitle));
+  },
+  handleAddDescription: (addedDescription, cardId) => {
+    dispatch(handleAddDescription(addedDescription, cardId));
+  },
+  handleAddComment: addedComment => {
+    dispatch(handleAddComment(addedComment));
+  },
+  handleRemoveComment: commentId => {
+    dispatch(handleRemoveComment(commentId));
+  },
+  handleUpdateComment: (commentId, updatedBody) => {
+    dispatch(handleUpdateComment(commentId, updatedBody));
+  },
+});
+
+Board.propTypes = {
+  state: PropTypes.object,
+  updateAuthor: PropTypes.func,
+  handleUpdateListName: PropTypes.func,
+  handleAddCard: PropTypes.func,
+  handleRemoveCard: PropTypes.func,
+  handleRemoveCardComments: PropTypes.func,
+  handleUpdateShowCardDetail: PropTypes.func,
+  handleUpdateCardTitle: PropTypes.func,
+  handleAddDescription: PropTypes.func,
+  handleAddComment: PropTypes.func,
+  handleRemoveComment: PropTypes.func,
+  handleUpdateComment: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
