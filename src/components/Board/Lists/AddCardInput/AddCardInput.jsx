@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { handleAddCard } from '../../../../redux/actions';
 
 const AddCardInput = props => {
   const [title, setTitle] = useState('');
@@ -73,4 +75,8 @@ AddCardInput.propTypes = {
   handleAddCard: PropTypes.func,
 };
 
-export default AddCardInput;
+const mapStateToProps = state => ({
+  author: state.authorReducer,
+});
+
+export default connect(mapStateToProps, { handleAddCard })(AddCardInput);

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
+import {handleRemoveComment, handleUpdateComment, updateAuthor} from "../../../../../../redux/actions";
 
 const Comment = props => {
   const [updateComment, setUpdateComment] = useState(props.body);
@@ -57,4 +59,7 @@ Comment.propTypes = {
   id: PropTypes.number,
   author: PropTypes.string,
 };
-export default Comment;
+
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps, { handleRemoveComment, handleUpdateComment })(Comment);

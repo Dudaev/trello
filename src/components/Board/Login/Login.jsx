@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { updateAuthor } from '../../../redux/actions';
 
 const Login = props => {
   const [visible, setVisible] = useState(true);
@@ -10,7 +12,9 @@ const Login = props => {
     setVisible(false);
   };
   const setNewAuthor = () => {
-    props.setAuthor(name);
+    // props.setAuthor(name);
+    // debugger
+    props.updateAuthor(name);
     setVisible(false);
   };
 
@@ -41,7 +45,9 @@ const Login = props => {
 };
 
 Login.propTypes = {
-  setAuthor: PropTypes.func,
+  updateAuthor: PropTypes.func,
 };
 
-export default Login;
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps, { updateAuthor })(Login);

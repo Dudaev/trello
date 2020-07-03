@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { handleAddDescription } from '../../../../../../redux/actions';
 
 const Description = props => {
   const [description, setDescription] = useState(props.cardDescription);
   const [visible, setVisible] = useState(false);
-
-  const handleAddDescription = () => {
-    setVisible(false);
-    props.handleAddDescription(description, props.cardId);
-  };
 
   return (
     <div>
@@ -31,7 +28,13 @@ const Description = props => {
               aria-label="With textarea"
             />
           </InputGroup>
-          <Button onClick={handleAddDescription} variant="primary">
+          <Button
+            onClick={() => {
+              setVisible(false);
+              props.handleAddDescription(description, props.cardId);
+            }}
+            variant="primary"
+          >
             Save
           </Button>
         </div>
@@ -44,4 +47,7 @@ Description.propTypes = {
   cardId: PropTypes.number,
   handleAddDescription: PropTypes.func,
 };
-export default Description;
+
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps, { handleAddDescription })(Description);

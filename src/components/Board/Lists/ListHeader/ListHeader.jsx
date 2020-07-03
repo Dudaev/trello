@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Card, FormControl, InputGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { handleUpdateListName } from '../../../../redux/actions';
 
 const ListHeader = props => {
   const [visible, setVisible] = useState(false);
@@ -45,4 +47,6 @@ ListHeader.propTypes = {
   listId: PropTypes.number,
 };
 
-export default ListHeader;
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps, { handleUpdateListName })(ListHeader);

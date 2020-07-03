@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Comment from './Comment/Comment.jsx';
 import Description from './Description/Description.jsx';
 import CardHeader from './CardHeader/CardHeader.jsx';
+import { handleAddComment } from '../../../../../redux/actions';
 
 function CardDetailWindow(props) {
   const [comment, setComment] = useState('');
@@ -44,8 +46,6 @@ function CardDetailWindow(props) {
       key={comments.id}
       id={comments.id}
       body={comments.body}
-      handleRemoveComment={props.handleRemoveComment}
-      handleUpdateComment={props.handleUpdateComment}
       author={props.author}
     />
   ));
@@ -57,7 +57,6 @@ function CardDetailWindow(props) {
           <CardHeader
             title={props.cardName}
             cardId={props.cardId}
-            handleUpdateCardTitle={props.handleUpdateCardTitle}
           />
         </Modal.Header>
 
@@ -76,7 +75,6 @@ function CardDetailWindow(props) {
             cardId={props.cardId}
             nameList={props.nameList}
             cardDescription={props.cardDescription}
-            handleAddDescription={props.handleAddDescription}
           />
 
           <div>Activity</div>
@@ -108,7 +106,6 @@ function CardDetailWindow(props) {
 
 CardDetailWindow.propTypes = {
   comments: PropTypes.array,
-  handleAddComment: PropTypes.func,
   cardId: PropTypes.number,
   thisCardComments: PropTypes.array,
   author: PropTypes.string,
@@ -116,12 +113,10 @@ CardDetailWindow.propTypes = {
   cardName: PropTypes.string,
   nameList: PropTypes.string,
   cardDescription: PropTypes.string,
-  handleClosingWindow: PropTypes.func,
-  handleAddDescription: PropTypes.func,
-  handleRemoveComment: PropTypes.func,
-  handleUpdateComment: PropTypes.func,
-  handleUpdateCardTitle: PropTypes.func,
+  handleAddComment: PropTypes.func,
   handleUpdateShowCardDetail: PropTypes.func,
 };
 
-export default CardDetailWindow;
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps, { handleAddComment })(CardDetailWindow);
