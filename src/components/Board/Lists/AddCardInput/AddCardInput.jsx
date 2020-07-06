@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { handleAddCard } from '../../../../redux/actions';
 
 const AddCardInput = props => {
   const [title, setTitle] = useState('');
   const [visible, setVisible] = useState(false);
-
+  const dispatch = useDispatch();
+  const author = useSelector(state => state.authorReducer);
   const generateId = () => {
     let id = 0;
     let result = true;
@@ -32,14 +34,16 @@ const AddCardInput = props => {
   function handleAddAndHide() {
     setVisible(false);
 
-    props.handleAddCard({
-      id: generateId(),
-      authorId: props.author,
-      listId: props.listId,
-      name: title,
-      description: '',
-      showCardDetail: false,
-    });
+    dispatch(
+      handleAddCard({
+        id: generateId(),
+        authorId: author,
+        listId: props.listId,
+        name: title,
+        description: '',
+        showCardDetail: false,
+      }),
+    );
     setTitle('');
   }
   return (
@@ -75,8 +79,4 @@ AddCardInput.propTypes = {
   handleAddCard: PropTypes.func,
 };
 
-const mapStateToProps = state => ({
-  author: state.authorReducer,
-});
-
-export default connect(mapStateToProps, { handleAddCard })(AddCardInput);
+export default AddCardInput;
