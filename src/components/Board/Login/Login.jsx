@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { Button, Col, Form, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateAuthor } from '../../../redux/actions';
 
-const Login = props => {
+const Login = () => {
   const [visible, setVisible] = useState(true);
   const [name, setName] = useState('');
+  const dispatch = useDispatch();
 
   const handleClose = () => {
     setVisible(false);
   };
   const setNewAuthor = () => {
-    props.updateAuthor(name);
+    // props.updateAuthor(name);
+    dispatch(updateAuthor(name));
     setVisible(false);
   };
 
@@ -46,6 +48,4 @@ Login.propTypes = {
   updateAuthor: PropTypes.func,
 };
 
-const mapStateToProps = () => ({});
-
-export default connect(mapStateToProps, { updateAuthor })(Login);
+export default Login;
