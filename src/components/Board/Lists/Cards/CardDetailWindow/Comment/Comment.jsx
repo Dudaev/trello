@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import {connect} from "react-redux";
-import {handleRemoveComment, handleUpdateComment, updateAuthor} from "../../../../../../redux/actions";
+import { connect } from 'react-redux';
+import { handleRemoveComment, handleUpdateComment } from '../../../../../../redux/actions';
 
 const Comment = props => {
   const [updateComment, setUpdateComment] = useState(props.body);
   const [visible, setVisible] = useState(false);
-
-  const handleRemoveComment = idOfRemovedComment => {
-    props.handleRemoveComment(idOfRemovedComment);
-  };
-  const handleUpdateComment = idOfUpdatedComment => {
-    setVisible(false);
-    props.handleUpdateComment(idOfUpdatedComment, updateComment);
-  };
 
   return (
     <div key={props.id}>
@@ -28,7 +20,7 @@ const Comment = props => {
             <Button onClick={() => setVisible(true)} variant="link">
               Edit
             </Button>
-            <Button onClick={() => handleRemoveComment(props.id)} variant="link">
+            <Button onClick={() => props.handleRemoveComment(props.id)} variant="link">
               Delete
             </Button>
           </div>
@@ -44,7 +36,7 @@ const Comment = props => {
               onChange={e => setUpdateComment(e.target.value)}
             />
             <InputGroup.Append>
-              <Button onClick={() => handleUpdateComment(props.id)}>Save</Button>
+              <Button onClick={() => props.handleUpdateComment(props.id, updateComment)}>Save</Button>
             </InputGroup.Append>
           </InputGroup>
         </div>

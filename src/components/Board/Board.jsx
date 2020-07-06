@@ -12,6 +12,7 @@ function Board(props) {
     localStorage.setItem('lists', JSON.stringify(props.state.listsReducer));
     localStorage.setItem('author', JSON.stringify(props.state.authorReducer));
   }, [props.state.cardsReducer, props.state.commentsReducer, props.state.listsReducer, props.state.authorReducer]);
+
   return (
     <div>
       <div className={styles.container}>

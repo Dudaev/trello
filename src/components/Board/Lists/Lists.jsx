@@ -11,7 +11,7 @@ const Lists = props => {
       <Card style={{ width: '18rem' }}>
         <ListHeader name={list.name} listId={list.id} />
         <Cards cards={props.cards} comments={props.comments} listId={list.id} nameList={list.name} />
-        <AddCardInput listId={list.id} cards={props.cards}/>
+        <AddCardInput listId={list.id} cards={props.cards} />
       </Card>
     </div>
   ));

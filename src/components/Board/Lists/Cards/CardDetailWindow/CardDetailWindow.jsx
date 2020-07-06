@@ -31,33 +31,15 @@ function CardDetailWindow(props) {
     return id;
   };
 
-  const handleAddComment = () => {
-    props.handleAddComment({
-      id: generateId(),
-      authorId: 0,
-      cardId: props.cardId,
-      body: comment,
-    });
-    setComment('');
-  };
-  // debugger
   const commentsList = props.thisCardComments.map(comments => (
-    <Comment
-      key={comments.id}
-      id={comments.id}
-      body={comments.body}
-      author={props.author}
-    />
+    <Comment key={comments.id} id={comments.id} body={comments.body} author={props.author} />
   ));
 
   return (
     <div>
       <Modal show={props.visible}>
         <Modal.Header>
-          <CardHeader
-            title={props.cardName}
-            cardId={props.cardId}
-          />
+          <CardHeader title={props.cardName} cardId={props.cardId} />
         </Modal.Header>
 
         <Modal.Body>
@@ -71,11 +53,7 @@ function CardDetailWindow(props) {
             <b>Description</b>
           </div>
 
-          <Description
-            cardId={props.cardId}
-            nameList={props.nameList}
-            cardDescription={props.cardDescription}
-          />
+          <Description cardId={props.cardId} nameList={props.nameList} cardDescription={props.cardDescription} />
 
           <div>Activity</div>
           <InputGroup>
@@ -87,7 +65,18 @@ function CardDetailWindow(props) {
             />
           </InputGroup>
 
-          <Button onClick={handleAddComment} variant="primary">
+          <Button
+            onClick={() => {
+              props.handleAddComment({
+                id: generateId(),
+                authorId: 0,
+                cardId: props.cardId,
+                body: comment,
+              });
+              setComment('');
+            }}
+            variant="primary"
+          >
             Save
           </Button>
 

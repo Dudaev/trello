@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
 import { Button, FormControl, InputGroup, Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import {connect} from "react-redux";
-import {handleUpdateCardTitle} from "../../../../../../redux/actions";
+import { connect } from 'react-redux';
+import { handleUpdateCardTitle } from '../../../../../../redux/actions';
 
 const CardHeader = props => {
   const [visible, setVisible] = useState(false);
   const [title, setTitle] = useState(props.title);
-
-  const handleUpdateCardTitle = () => {
-    setVisible(false);
-    props.handleUpdateCardTitle(props.cardId, title);
-  };
 
   return (
     <div>
@@ -27,7 +22,13 @@ const CardHeader = props => {
         <div>
           <InputGroup>
             <FormControl value={title} onChange={e => setTitle(e.target.value)} />
-            <Button onClick={handleUpdateCardTitle} variant="primary">
+            <Button
+              onClick={() => {
+                setVisible(false);
+                props.handleUpdateCardTitle(props.cardId, title);
+              }}
+              variant="primary"
+            >
               Save
             </Button>
           </InputGroup>

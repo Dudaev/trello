@@ -12,8 +12,6 @@ const Login = props => {
     setVisible(false);
   };
   const setNewAuthor = () => {
-    // props.setAuthor(name);
-    // debugger
     props.updateAuthor(name);
     setVisible(false);
   };

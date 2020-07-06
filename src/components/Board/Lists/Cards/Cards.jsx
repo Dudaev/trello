@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styles from './Cards.module.css';
 import CardDetailWindow from './CardDetailWindow/CardDetailWindow.jsx';
-import {connect} from "react-redux";
-import {
-  handleRemoveCard,
-  handleRemoveCardComments,
-  handleUpdateShowCardDetail,
-} from "../../../../redux/actions";
+import { handleRemoveCard, handleRemoveCardComments, handleUpdateShowCardDetail } from '../../../../redux/actions';
 
 const Cards = props => {
-
   const handleRemoveCardWithComments = cardId => {
     props.handleRemoveCard(cardId);
     props.handleRemoveCardComments(cardId);
@@ -20,7 +15,6 @@ const Cards = props => {
   const newCards = props.cards.filter(card => card.listId === props.listId);
   const cardsElements = newCards.map(card => {
     const thisCardComments = props.comments.filter(comment => comment.cardId === card.id);
-    console.log(`card.id = ${card.id}`);
     return (
       <div key={card.id} className={styles.container}>
         <Button onClick={() => handleRemoveCardWithComments(card.id)} className={styles.close} variant="link">
@@ -47,7 +41,6 @@ const Cards = props => {
     );
   });
   return <div>{cardsElements}</div>;
-
 };
 Cards.propTypes = {
   handleRemoveCardComments: PropTypes.func,
@@ -61,4 +54,6 @@ Cards.propTypes = {
 
 const mapStateToProps = () => ({});
 
-export default connect(mapStateToProps, { handleUpdateShowCardDetail, handleRemoveCard, handleRemoveCardComments })(Cards);
+export default connect(mapStateToProps, { handleUpdateShowCardDetail, handleRemoveCard, handleRemoveCardComments })(
+  Cards,
+);
